@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Party</string>
+    <string name="picture_description">Banner do evento</string>
 </resources>
