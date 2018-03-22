@@ -8,31 +8,47 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:elevation="@dimen/elevation_appbar">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/app_name"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:titleTextColor="@color/colorTextItens">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="center"
                 android:layout_margin="16dp"
                 android:src="@mipmap/ic_logo" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_event"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_event"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingTop="8dp" />
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bn_navigation_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@drawable/selector_navitagion"
+        app:menu="@menu/menu_bottom" />
 
 </android.support.design.widget.CoordinatorLayout>

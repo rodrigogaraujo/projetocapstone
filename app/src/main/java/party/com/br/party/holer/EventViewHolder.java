@@ -1,6 +1,5 @@
 package party.com.br.party.holer;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import party.com.br.party.R;
 import party.com.br.party.entity.Event;
+import party.com.br.party.helper.RoundedTransformation;
 
 /**
  * Created by g3infotech on 22/03/18.
@@ -32,7 +32,9 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
     public void onBind(Event event) {
         if (event != null) {
             if (!event.getPicture().equals("")) {
-                Picasso.get().load(event.getPicture()).centerCrop().into(mIvBanner);
+                final int radius = 5;
+                final int margin = 5;
+                Picasso.get().load(event.getPicture()).transform(new RoundedTransformation(10,0)).into(mIvBanner);
             }
             mTvName.setText(event.getName());
         }
