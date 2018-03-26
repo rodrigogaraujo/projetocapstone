@@ -71,5 +71,6 @@ public class MainActivity extends AppCompatActivity {
         mEvents.add(g3);
         mEventAdapter = new EventAdapter(this, mEvents);
         mRvEvents.setAdapter(mEventAdapter);
+
     }
 }
