@@ -4,16 +4,16 @@
     <item
         android:id="@+id/action_event"
         android:icon="@drawable/ic_location"
-        android:title=""
+        android:title="@string/locales"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_home"
         android:icon="@drawable/ic_home"
-        android:title=""
+        android:title="@string/home"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_lacation"
         android:icon="@drawable/ic_favorite"
-        android:title=""
+        android:title="@string/favorites"
         app:showAsAction="ifRoom" />
 </menu>

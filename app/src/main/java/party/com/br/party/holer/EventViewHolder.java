@@ -32,8 +32,6 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
     public void onBind(Event event) {
         if (event != null) {
             if (!event.getPicture().equals("")) {
-                final int radius = 5;
-                final int margin = 5;
                 Picasso.get().load(event.getPicture()).transform(new RoundedTransformation(10,0)).into(mIvBanner);
             }
             mTvName.setText(event.getName());

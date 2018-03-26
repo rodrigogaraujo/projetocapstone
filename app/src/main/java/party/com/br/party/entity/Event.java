@@ -12,6 +12,7 @@ public class Event {
     private String id;
     private String name;
     private String description;
+    private String type;
     private String picture;
     private String location;
     private String schedule;
@@ -22,10 +23,11 @@ public class Event {
     public Event() {
     }
 
-    public Event(String id, String name, String description, String picture, String location, String schedule, String contact, Date date, List<String> localeTickets) {
+    public Event(String id, String name, String description, String type, String picture, String location, String schedule, String contact, Date date, List<String> localeTickets) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.type = type;
         this.picture = picture;
         this.location = location;
         this.schedule = schedule;
@@ -56,6 +58,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPicture() {

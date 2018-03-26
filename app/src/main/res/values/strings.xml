@@ -3,4 +3,13 @@
     <string name="picture_description">Banner do evento</string>
     <string name="favorite_this_event">Favorite esse evento</string>
     <string name="more_details">Mais detelhes</string>
+    <string name="locales">LOCAIS</string>
+    <string name="home">HOME</string>
+    <string name="favorites">FAVORITOS</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
