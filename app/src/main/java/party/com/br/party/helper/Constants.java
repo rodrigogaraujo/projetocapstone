@@ -5,5 +5,5 @@ package party.com.br.party.helper;
  */
 
 public class Constants {
-
+    public static final String SEND_EVENT = "br.com.party.send_event";
 }

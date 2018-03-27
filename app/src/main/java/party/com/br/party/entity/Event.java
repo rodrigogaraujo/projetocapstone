@@ -1,5 +1,8 @@
 package party.com.br.party.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +10,7 @@ import java.util.List;
  * Created by g3infotech on 22/03/18.
  */
 
-public class Event {
+public class Event implements Parcelable{
 
     private String id;
     private String name;
@@ -38,6 +41,31 @@ public class Event {
         this.date = date;
         this.localeTickets = localeTickets;
     }
+
+    protected Event(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+        type = in.readString();
+        picture = in.readString();
+        location = in.readString();
+        adress = in.readString();
+        schedule = in.readString();
+        contact = in.readString();
+        localeTickets = in.createStringArrayList();
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -125,5 +153,24 @@ public class Event {
 
     public void setLocaleTickets(List<String> localeTickets) {
         this.localeTickets = localeTickets;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(type);
+        dest.writeString(picture);
+        dest.writeString(location);
+        dest.writeString(adress);
+        dest.writeString(schedule);
+        dest.writeString(contact);
+        dest.writeStringList(localeTickets);
     }
 }

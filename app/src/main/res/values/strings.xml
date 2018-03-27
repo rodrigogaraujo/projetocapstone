@@ -4,6 +4,7 @@
     <string name="favorite_this_event">Favorite esse evento</string>
     <string name="more_details">Mais detelhes</string>
     <string name="locales">LOCAIS</string>
+    <string name="locale">LOCAL</string>
     <string name="home">HOME</string>
     <string name="favorites">FAVORITOS</string>
     <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
