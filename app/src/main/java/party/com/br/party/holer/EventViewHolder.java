@@ -65,6 +65,7 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
                 Intent i = new Intent(mContext, DetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(Constants.SEND_EVENT, mEvent);
+                i.putExtras(bundle);
                 mContext.startActivity(i);
                 break;
         }

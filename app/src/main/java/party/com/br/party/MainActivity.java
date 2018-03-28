@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 "Juazeiro do Norte", "Brasil,Piauí, Marcolândia, Avenida Maria Concebida Costa, 29", "21h", "+55 (89) 99463-0386", new Date(), locails);
         Event marcolandia1 = new Event("3", "Caldas Country", "21 aniversário da cidade de marcolândia",
                 "forró","http://agito.com.br/agitouberaba/eventos/3754/4911ac111b_11358894_784061501692256_613804643_n.jpg",
-                "Araripina", "Brasil,Piauí, Marcolândia, Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
+                "Araripina", "Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
         Event marcolandia2 = new Event("4", "Aniversário de Marcolândia", "21 aniversário da cidade de marcolândia",
                 "forró", "http://cafecomshah.com.br/wp-content/uploads/2017/06/banner-piu-piu-20-anos.jpg", "Marcolândia",
                 "Brasil,Piauí, Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
