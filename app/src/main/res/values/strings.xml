@@ -1,4 +1,6 @@
 <resources>
+
+    <string name="api_key_maps">AIzaSyAQKdCn69lTw3OO5z74rMW1s_W1uypZu_k</string>
     <string name="app_name">Party</string>
     <string name="picture_description">Banner do evento</string>
     <string name="favorite_this_event">Favorite esse evento</string>
