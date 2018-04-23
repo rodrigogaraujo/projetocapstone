@@ -6,4 +6,5 @@ package party.com.br.party.helper;
 
 public class Constants {
     public static final String SEND_EVENT = "br.com.party.send_event";
+    public static final int DEFAULT_ZOOM = 17;
 }
