@@ -10,7 +10,7 @@ import java.util.List;
  * Created by g3infotech on 22/03/18.
  */
 
-public class Event implements Parcelable{
+public class Event implements Parcelable {
 
     private String id;
     private String name;
@@ -19,16 +19,14 @@ public class Event implements Parcelable{
     private String picture;
     private String location;
     private String adress;
-    private String schedule;
     private String contact;
-    private Date date;
     private List<String> localeTickets;
+    private List<Day> days;
 
     public Event() {
     }
 
-    public Event(String id, String name, String description, String type, String picture, String location, String adress,
-                 String schedule, String contact, Date date, List<String> localeTickets) {
+    public Event(String id, String name, String description, String type, String picture, String location, String adress, String contact, List<String> localeTickets, List<Day> days) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,10 +34,9 @@ public class Event implements Parcelable{
         this.picture = picture;
         this.location = location;
         this.adress = adress;
-        this.schedule = schedule;
         this.contact = contact;
-        this.date = date;
         this.localeTickets = localeTickets;
+        this.days = days;
     }
 
     protected Event(Parcel in) {
@@ -50,7 +47,6 @@ public class Event implements Parcelable{
         picture = in.readString();
         location = in.readString();
         adress = in.readString();
-        schedule = in.readString();
         contact = in.readString();
         localeTickets = in.createStringArrayList();
     }
@@ -66,6 +62,11 @@ public class Event implements Parcelable{
             return new Event[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     public String getId() {
         return id;
@@ -123,28 +124,12 @@ public class Event implements Parcelable{
         this.adress = adress;
     }
 
-    public String getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(String schedule) {
-        this.schedule = schedule;
-    }
-
     public String getContact() {
         return contact;
     }
 
     public void setContact(String contact) {
         this.contact = contact;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public List<String> getLocaleTickets() {
@@ -155,9 +140,16 @@ public class Event implements Parcelable{
         this.localeTickets = localeTickets;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public List<Day> getDays() {
+        return days;
+    }
+
+    public void setDays(List<Day> days) {
+        this.days = days;
+    }
+
+    public static Creator<Event> getCREATOR() {
+        return CREATOR;
     }
 
     @Override
@@ -169,7 +161,6 @@ public class Event implements Parcelable{
         dest.writeString(picture);
         dest.writeString(location);
         dest.writeString(adress);
-        dest.writeString(schedule);
         dest.writeString(contact);
         dest.writeStringList(localeTickets);
     }

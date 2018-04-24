@@ -19,4 +19,6 @@
     <string name="value">VALOR</string>
     <string name="date">DATA</string>
     <string name="contact">CONTATO</string>
+
+    <string name="day_singer">Dia %1$s - %2$s</string>
 </resources>

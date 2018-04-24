@@ -13,6 +13,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ProgressBar
+            android:id="@+id/pb_picture"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/eight_dp"
+            android:layout_marginStart="@dimen/eight_dp"
+            android:layout_marginTop="@dimen/eight_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
         <ImageView
             android:id="@+id/iv_banner"
             android:layout_width="match_parent"

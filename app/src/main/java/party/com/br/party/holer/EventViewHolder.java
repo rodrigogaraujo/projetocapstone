@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.text.Format;
@@ -34,6 +35,8 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
     TextView mTvName;
     @BindView(R.id.tv_city_date)
     TextView mTvCityDate;
+    @BindView(R.id.pb_picture)
+    ProgressBar mPbPicture;
     private Format mFormat;
     private Event mEvent;
     private Context mContext;
@@ -48,10 +51,20 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public void onBind(Event event) {
         if (event != null) {
             if (!event.getPicture().equals("")) {
-                Picasso.get().load(event.getPicture()).transform(new RoundedTransformation(10,0)).into(mIvBanner);
+                mPbPicture.setVisibility(View.VISIBLE);
+                Picasso.get().load(event.getPicture()).transform(new RoundedTransformation(10,0)).into(mIvBanner, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        mPbPicture.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+
+                    }
+                });
             }
             mTvName.setText(event.getName());
-            mTvCityDate.setText(event.getLocation() + ", " + mFormat.format(event.getDate()));
             mIvBanner.setOnClickListener(this);
             mEvent = event;
         }

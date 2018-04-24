@@ -16,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import party.com.br.party.adapter.EventAdapter;
+import party.com.br.party.entity.Day;
 import party.com.br.party.entity.Event;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,31 +51,19 @@ public class MainActivity extends AppCompatActivity {
 
         Event marcolandia = new Event("1", "Lollapalooza", "21 aniversário da cidade de marcolândia",
                 "eletrônica", "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg",
-                "Marcolândia", "Brasil,Piauí, Marcolândia, Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
+        "Marcolândia", "Avenida Corinto matos, 23", "+55 (89) 3439-1183", new ArrayList<String>(), new ArrayList<Day>());
+
+        List<Day> days = new ArrayList<>();
+        Day day = new Day("1", 20, 30, 40, 1, new Date(), "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg", "", "Dj Alok");
         List<String> locails = new ArrayList<>();
         locails.add("Brasil,Piauí, Marcolândia, Avenida Maria Concebida Costa, 29");
         Event g3 = new Event("2", "Dj Alok", "Teesteeeeeeee",
                 "eletrônica","http://agito.com.br/agitoindaiatuba/eventos/1312/5d5df8b4f3_10445958_742604935777987_6258263799971385453_n.jpg",
-                "Juazeiro do Norte", "Brasil,Piauí, Marcolândia, Avenida Maria Concebida Costa, 29", "21h", "+55 (89) 99463-0386", new Date(), locails);
-        Event marcolandia1 = new Event("3", "Caldas Country", "21 aniversário da cidade de marcolândia",
-                "forró","http://agito.com.br/agitouberaba/eventos/3754/4911ac111b_11358894_784061501692256_613804643_n.jpg",
-                "Araripina", "Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
-        Event marcolandia2 = new Event("4", "Aniversário de Marcolândia", "21 aniversário da cidade de marcolândia",
-                "forró", "http://cafecomshah.com.br/wp-content/uploads/2017/06/banner-piu-piu-20-anos.jpg", "Marcolândia",
-                "Brasil,Piauí, Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
-        Event marcolandia3 = new Event("5", "Aniversário de Marcolândia", "21 aniversário da cidade de marcolândia",
-                "eletrônica", "", "Rio de Janeiro",
-                "Brasil,Piauí, Marcolândia, Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
-        Event marcolandia4 = new Event("6", "Aniversário de Marcolândia", "21 aniversário da cidade de marcolândia",
-                "eletrônica", "http://www.fmodia.com.br/wp-content/uploads/2017/06/Festa-Genesis-Wesley-Safadao-Banner.jpg",
-                "São Paulo", "Brasil,Piauí, Marcolândia, Avenida Corinto matos, 23", "21h", "+55 (89) 3439-1183", new Date(), new ArrayList<String>());
+                "Juazeiro do Norte", "Avenida Maria Concebida Costa, 29","+55 (89) 99463-0386", locails, days);
+
 
         mEvents = new ArrayList<>();
         mEvents.add(marcolandia);
-        mEvents.add(marcolandia1);
-        mEvents.add(marcolandia2);
-        mEvents.add(marcolandia3);
-        mEvents.add(marcolandia4);
         mEvents.add(g3);
         mEventAdapter = new EventAdapter(this, mEvents);
         mRvEvents.setAdapter(mEventAdapter);
