@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRvEvents;
     private LinearLayoutManager mLayoutManager;
     private Toolbar mToolbar;
-    private BottomNavigationView mBottomView;@BindView(R.id.progress_event)
+    private BottomNavigationView mBottomView;
+    @BindView(R.id.progress_event)
     ProgressBar mProgressEvent;
 
     @Override
@@ -49,17 +50,22 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRvEvents.setLayoutManager(mLayoutManager);
 
-        Event marcolandia = new Event("1", "Lollapalooza", "21 aniversário da cidade de marcolândia",
-                "eletrônica", "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg",
-        "Marcolândia", "Avenida Corinto matos, 23", "+55 (89) 3439-1183", new ArrayList<String>(), new ArrayList<Day>());
-
         List<Day> days = new ArrayList<>();
         Day day = new Day("1", 20, 30, 40, 1, new Date(), "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg", "", "Dj Alok");
+        Day day1 = new Day("1", 20, 30, 40, 1, new Date(), "http://agito.com.br/agitoindaiatuba/eventos/1312/5d5df8b4f3_10445958_742604935777987_6258263799971385453_n.jpg", "", "Dj Alok");
+        days.add(day);
+        days.add(day1);
+
+        Event marcolandia = new Event("1", "Lollapalooza", "21 aniversário da cidade de marcolândia",
+                "eletrônica", "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg",
+                "Marcolândia", "Avenida Corinto matos, 23", "+55 (89) 3439-1183", "rodrigoaraujo990@gmail.com", new Date(), 8, new ArrayList<String>(), days);
+
         List<String> locails = new ArrayList<>();
         locails.add("Brasil,Piauí, Marcolândia, Avenida Maria Concebida Costa, 29");
+
         Event g3 = new Event("2", "Dj Alok", "Teesteeeeeeee",
-                "eletrônica","http://agito.com.br/agitoindaiatuba/eventos/1312/5d5df8b4f3_10445958_742604935777987_6258263799971385453_n.jpg",
-                "Juazeiro do Norte", "Avenida Maria Concebida Costa, 29","+55 (89) 99463-0386", locails, days);
+                "eletrônica", "http://agito.com.br/agitoindaiatuba/eventos/1312/5d5df8b4f3_10445958_742604935777987_6258263799971385453_n.jpg",
+                "Juazeiro do Norte", "Avenida Maria Concebida Costa, 29", "+55 (89) 99463-0386","rodrigoaraujo990@gmail.com",  new Date(), 11, locails, days);
 
 
         mEvents = new ArrayList<>();

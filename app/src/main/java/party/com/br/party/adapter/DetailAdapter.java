@@ -39,6 +39,9 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailHolder> {
 
     @Override
     public int getItemCount() {
-        return mDays.size();
+        if(mDays != null)
+            return mDays.size();
+        else
+            return 0;
     }
 }

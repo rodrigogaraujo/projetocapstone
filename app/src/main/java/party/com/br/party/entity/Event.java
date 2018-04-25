@@ -20,13 +20,16 @@ public class Event implements Parcelable {
     private String location;
     private String adress;
     private String contact;
+    private String email;
+    private Date date;
+    private int hours;
     private List<String> localeTickets;
     private List<Day> days;
 
     public Event() {
     }
 
-    public Event(String id, String name, String description, String type, String picture, String location, String adress, String contact, List<String> localeTickets, List<Day> days) {
+    public Event(String id, String name, String description, String type, String picture, String location, String adress, String contact, String email, Date date, int hours, List<String> localeTickets, List<Day> days) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -35,6 +38,9 @@ public class Event implements Parcelable {
         this.location = location;
         this.adress = adress;
         this.contact = contact;
+        this.email = email;
+        this.date = date;
+        this.hours = hours;
         this.localeTickets = localeTickets;
         this.days = days;
     }
@@ -48,7 +54,10 @@ public class Event implements Parcelable {
         location = in.readString();
         adress = in.readString();
         contact = in.readString();
+        email = in.readString();
+        hours = in.readInt();
         localeTickets = in.createStringArrayList();
+        days = in.createTypedArrayList(Day.CREATOR);
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -64,8 +73,22 @@ public class Event implements Parcelable {
     };
 
     @Override
-    public int describeContents() {
-        return 0;
+    public String toString() {
+        return "Event{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", picture='" + picture + '\'' +
+                ", location='" + location + '\'' +
+                ", adress='" + adress + '\'' +
+                ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
+                ", date=" + date +
+                ", hours=" + hours +
+                ", localeTickets=" + localeTickets +
+                ", days=" + days +
+                '}';
     }
 
     public String getId() {
@@ -132,6 +155,30 @@ public class Event implements Parcelable {
         this.contact = contact;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
     public List<String> getLocaleTickets() {
         return localeTickets;
     }
@@ -148,8 +195,9 @@ public class Event implements Parcelable {
         this.days = days;
     }
 
-    public static Creator<Event> getCREATOR() {
-        return CREATOR;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     @Override
@@ -162,6 +210,9 @@ public class Event implements Parcelable {
         dest.writeString(location);
         dest.writeString(adress);
         dest.writeString(contact);
+        dest.writeString(email);
+        dest.writeInt(hours);
         dest.writeStringList(localeTickets);
+        dest.writeTypedList(days);
     }
 }

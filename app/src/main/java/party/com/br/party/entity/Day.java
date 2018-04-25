@@ -147,4 +147,19 @@ public class Day implements Parcelable {
     public void setSinger(String singer) {
         this.singer = singer;
     }
+
+    @Override
+    public String toString() {
+        return "Day{" +
+                "id='" + id + '\'' +
+                ", valueBasic=" + valueBasic +
+                ", valueVip=" + valueVip +
+                ", valueTop=" + valueTop +
+                ", day=" + day +
+                ", date=" + date +
+                ", picture='" + picture + '\'' +
+                ", description='" + description + '\'' +
+                ", singer='" + singer + '\'' +
+                '}';
+    }
 }

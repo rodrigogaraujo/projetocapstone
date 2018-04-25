@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
@@ -37,7 +39,6 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
     TextView mTvCityDate;
     @BindView(R.id.pb_picture)
     ProgressBar mPbPicture;
-    private Format mFormat;
     private Event mEvent;
     private Context mContext;
 
@@ -45,7 +46,6 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
         super(itemView);
         ButterKnife.bind(this, itemView);
         mContext = itemView.getContext();
-        mFormat = new SimpleDateFormat("dd-MM-yyyy");
     }
 
     public void onBind(Event event) {
@@ -66,6 +66,8 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
             }
             mTvName.setText(event.getName());
             mIvBanner.setOnClickListener(this);
+            String stringDate = DateFormat.getDateInstance().format(event.getDate());
+            mTvCityDate.setText(mContext.getResources().getString(R.string.date_city, event.getLocation(), stringDate));
             mEvent = event;
         }
     }

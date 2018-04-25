@@ -21,4 +21,15 @@
     <string name="contact">CONTATO</string>
 
     <string name="day_singer">Dia %1$s - %2$s</string>
+    <string name="price_basic">Entrada pista - R$ %1$s</string>
+    <string name="price_vip">Entrada VIP - R$ %1$s</string>
+    <string name="price_top">Entrada camarote - R$ %1$s</string>
+    <string name="date_city">%1$s - %2$s</string>
+    <string name="date_hours">%1$s a partir de %2$s hora(s) </string>
+    <string name="priece">O QUE ROLARÁ POR DIA E PREÇO:</string>
+    <string name="who_go">Quem vai</string>
+    <string name="chat">Chat</string>
+    <string name="i_go">Eu vou</string>
+    <string name="tickets">INGRESSOS:</string>
+    <string name="more_info">MAIS DETALHES</string>
 </resources>

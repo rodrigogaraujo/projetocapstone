@@ -72,14 +72,15 @@
 
             <TextView
                 android:id="@+id/tv_city_date"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="@dimen/eight_dp"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ib_more_details"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
                 tools:text="MARCOLÂNDIA, 21-01-2018" />
