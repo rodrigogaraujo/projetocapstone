@@ -23,13 +23,13 @@ public class Event implements Parcelable {
     private String email;
     private Date date;
     private int hours;
-    private List<String> localeTickets;
+    private List<LocaleTicket> localeTickets;
     private List<Day> days;
 
     public Event() {
     }
 
-    public Event(String id, String name, String description, String type, String picture, String location, String adress, String contact, String email, Date date, int hours, List<String> localeTickets, List<Day> days) {
+    public Event(String id, String name, String description, String type, String picture, String location, String adress, String contact, String email, Date date, int hours, List<LocaleTicket> localeTickets, List<Day> days) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -56,7 +56,7 @@ public class Event implements Parcelable {
         contact = in.readString();
         email = in.readString();
         hours = in.readInt();
-        localeTickets = in.createStringArrayList();
+        localeTickets = in.createTypedArrayList(LocaleTicket.CREATOR);
         days = in.createTypedArrayList(Day.CREATOR);
     }
 
@@ -179,11 +179,11 @@ public class Event implements Parcelable {
         this.hours = hours;
     }
 
-    public List<String> getLocaleTickets() {
+    public List<LocaleTicket> getLocaleTickets() {
         return localeTickets;
     }
 
-    public void setLocaleTickets(List<String> localeTickets) {
+    public void setLocaleTickets(List<LocaleTicket> localeTickets) {
         this.localeTickets = localeTickets;
     }
 
@@ -212,7 +212,7 @@ public class Event implements Parcelable {
         dest.writeString(contact);
         dest.writeString(email);
         dest.writeInt(hours);
-        dest.writeStringList(localeTickets);
+        dest.writeTypedList(localeTickets);
         dest.writeTypedList(days);
     }
 }

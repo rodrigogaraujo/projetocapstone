@@ -30,6 +30,12 @@
     <string name="who_go">Quem vai</string>
     <string name="chat">Chat</string>
     <string name="i_go">Eu vou</string>
-    <string name="tickets">INGRESSOS:</string>
+    <string name="tickets">PONTOS COM INGRESSOS:</string>
     <string name="more_info">MAIS DETALHES</string>
+    <string name="no_details">SEM DETALHES ADICIONAIS</string>
+    <string name="say_email">Nos informe seu email</string>
+    <string name="say_us">Nos diga, você está atrás de?</string>
+    <string name="events">Baladas</string>
+    <string name="promote_events">Promover eventos</string>
+    <string name="create_user">Você não possui cadastro.. Nos confirme alguns dados.</string>
 </resources>

@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import party.com.br.party.adapter.EventAdapter;
 import party.com.br.party.entity.Day;
 import party.com.br.party.entity.Event;
+import party.com.br.party.entity.LocaleTicket;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,12 +57,17 @@ public class MainActivity extends AppCompatActivity {
         days.add(day);
         days.add(day1);
 
+        List<LocaleTicket> locails = new ArrayList<>();
+        LocaleTicket localeTicket = new LocaleTicket("1","Avenida Maria Concebida Costa, 29", "(89)99463-0386", "rodrigoaraujo990@gmail.com");
+        LocaleTicket localeTicket1 = new LocaleTicket("12","Avenida Maria Concebida Costa, 290", "(89)99463-0386", "rodrigoaraujo990@gmail.com");
+        locails.add(localeTicket);
+        locails.add(localeTicket1);
+
+
         Event marcolandia = new Event("1", "Lollapalooza", "21 aniversário da cidade de marcolândia",
                 "eletrônica", "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg",
-                "Marcolândia", "Avenida Corinto matos, 23", "+55 (89) 3439-1183", "rodrigoaraujo990@gmail.com", new Date(), 8, new ArrayList<String>(), days);
+                "Marcolândia", "Avenida Corinto matos, 23", "+55 (89) 3439-1183", "rodrigoaraujo990@gmail.com", new Date(), 8, locails, days);
 
-        List<String> locails = new ArrayList<>();
-        locails.add("Brasil,Piauí, Marcolândia, Avenida Maria Concebida Costa, 29");
 
         Event g3 = new Event("2", "Dj Alok", "Teesteeeeeeee",
                 "eletrônica", "http://agito.com.br/agitoindaiatuba/eventos/1312/5d5df8b4f3_10445958_742604935777987_6258263799971385453_n.jpg",

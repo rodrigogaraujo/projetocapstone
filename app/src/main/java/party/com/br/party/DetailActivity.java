@@ -5,22 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -28,9 +19,9 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import party.com.br.party.adapter.DetailAdapter;
+import party.com.br.party.adapter.LocaleTicketAdapter;
 import party.com.br.party.entity.Event;
 import party.com.br.party.helper.Constants;
-import party.com.br.party.helper.Utilities;
 
 public class DetailActivity extends AppCompatActivity{
 
@@ -44,12 +35,16 @@ public class DetailActivity extends AppCompatActivity{
     TextView mTvEmail;
     @BindView(R.id.tv_date)
     TextView mTvDate;
+    @BindView(R.id.tv_more_info)
+    TextView mTvMoreInfo;
     @BindView(R.id.iv_banner)
     ImageView mIvBanner;
     @BindView(R.id.progress_event)
     ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerViewLocale;
     private DetailAdapter mDetailAdapter;
+    private LocaleTicketAdapter mLocaleTicketAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +54,11 @@ public class DetailActivity extends AppCompatActivity{
 
         mToolbar = findViewById(R.id.toolbar_detail);
         mRecyclerView = findViewById(R.id.rv_days_event);
+        mRecyclerViewLocale = findViewById(R.id.rv_points);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mRecyclerViewLocale.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         setSupportActionBar(mToolbar);
         if (mToolbar != null) {
@@ -87,8 +84,15 @@ public class DetailActivity extends AppCompatActivity{
                 else
                     stringDate = format.format(mEvent.getDate());
                 mTvDate.setText(getResources().getString(R.string.date_hours, String.valueOf(stringDate), String.valueOf(mEvent.getHours())));
+                if(mEvent.getDescription().equals(""))
+                    mTvMoreInfo.setText(R.string.no_details);
+                else
+                    mTvMoreInfo.setText(mEvent.getDescription());
                 mDetailAdapter = new DetailAdapter(this, mEvent.getDays());
                 mRecyclerView.setAdapter(mDetailAdapter);
+
+                mLocaleTicketAdapter = new LocaleTicketAdapter(this, mEvent.getLocaleTickets());
+                mRecyclerViewLocale.setAdapter(mLocaleTicketAdapter);
             }
         }
     }
