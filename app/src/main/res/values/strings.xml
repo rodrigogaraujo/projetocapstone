@@ -61,4 +61,6 @@
     <string name="add_locale">ADICIONAR LOCAL</string>
     <string name="remove_locale">Remover local</string>
     <string name="new_event">Novo Evento</string>
+    <string name="no_event">Nenhuma programação</string>
+    <string name="name">Nome da atração</string>
 </resources>

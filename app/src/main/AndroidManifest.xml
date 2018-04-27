@@ -33,7 +33,9 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".EditProfileActivity" />
-        <activity android:name=".CreateEventActivity"></activity>
+        <activity android:name=".CreateEventActivity" />
+        <activity android:name=".AddDayActivity" />
+        <activity android:name=".AddLocaleActivity"></activity>
     </application>
 
 </manifest>
