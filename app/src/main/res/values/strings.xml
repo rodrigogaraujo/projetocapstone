@@ -56,4 +56,9 @@
     <string name="time">Horário do evento</string>
     <string name="remove_day">Remover Dia</string>
     <string name="add_day">Adicionar Dia</string>
+    <string name="days_event">DIAS DO EVENTO</string>
+    <string name="locale_ticket">LOCAIS COM INGRESSO</string>
+    <string name="add_locale">ADICIONAR LOCAL</string>
+    <string name="remove_locale">Remover local</string>
+    <string name="new_event">Novo Evento</string>
 </resources>

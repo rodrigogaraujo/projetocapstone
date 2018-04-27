@@ -143,8 +143,8 @@ public class InitActivity extends AppCompatActivity
         if (id == R.id.nav_profile) {
             // Handle the camera action
             startActivity(new Intent(this, ProfileActivity.class));
-        } else if (id == R.id.nav_gallery) {
-
+        } else if (id == R.id.nav_event) {
+            startActivity(new Intent(this, CreateEventActivity.class));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
