@@ -38,4 +38,22 @@
     <string name="events">Baladas</string>
     <string name="promote_events">Promover eventos</string>
     <string name="create_user">Você não possui cadastro.. Nos confirme alguns dados.</string>
+    <string name="all_name">Nome Completo</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="confirme_sua_senha">Confirme sua senha</string>
+    <string name="phone">Telefone</string>
+    <string name="title_activity_init">InitActivity</string>
+    <string name="settings">Configurações</string>
+    <string name="out">Sair</string>
+    <string name="profile">Meu perfil</string>
+    <string name="status">Status</string>
+    <string name="adress">Endereço</string>
+    <string name="confirm_change">Confirme as alterações</string>
+    <string name="image_profile">Imagem do perfil</string>
+    <string name="description_event">Descrição do evento</string>
+    <string name="date_event">Data do evento</string>
+    <string name="time">Horário do evento</string>
+    <string name="remove_day">Remover Dia</string>
+    <string name="add_day">Adicionar Dia</string>
 </resources>

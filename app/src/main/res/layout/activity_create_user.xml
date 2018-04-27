@@ -4,86 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="party.com.br.party.CreateUserActivity"
-    android:background="@drawable/shape_gradient">
+    android:background="@drawable/shape_gradient"
+    tools:context="party.com.br.party.CreateUserActivity">
 
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:drawableLeft="@drawable/ic_account_name"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_account_name"
         android:ems="10"
+        android:hint="@string/all_name"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/tv_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/email"
+        android:drawableLeft="@drawable/ic_email_white"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_email_white"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/tv_pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/senha"
+        android:drawableLeft="@drawable/ic_lock_white"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_lock_white"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/tv_confirm_pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/confirme_sua_senha"
+        android:drawableLeft="@drawable/ic_lock_white"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_lock_white"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_pass" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/tv_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_phone_white"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_phone_white"
         android:ems="10"
+        android:hint="@string/phone"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_confirm_pass" />
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/font_style_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/create_user"
-        style="@style/font_style_detail"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,11 +114,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_check"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
 
 </android.support.constraint.ConstraintLayout>
