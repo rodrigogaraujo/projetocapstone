@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -43,6 +43,17 @@
         <item name="android:fontFamily">@font/calibri</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/colorSecundaryText</item>
+    </style>
+
+    <style name="font_text_day">
+        <item name="android:fontFamily">@font/calibri</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorSecundaryText</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">8dp</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
 </resources>

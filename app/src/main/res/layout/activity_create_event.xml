@@ -5,50 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="party.com.br.party.CreateEventActivity">
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_banner"
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:src="@mipmap/no_picture"
-            android:background="@color/colorBlack"
+            app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_banner"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@color/colorBlack"
+                android:contentDescription="@string/image_of_event"
+                android:src="@mipmap/no_picture" />
+
+        </android.support.v7.widget.CardView>
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/tv_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_description"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/ic_description"
             android:ems="10"
             android:hint="@string/description_event"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_banner" />
+            app:layout_constraintTop_toBottomOf="@+id/card_image" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/tv_adress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_location_black"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/ic_location_black"
             android:ems="10"
             android:hint="@string/adress"
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText10" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_more_details" />
 
         <LinearLayout
             android:id="@+id/linear"
@@ -56,28 +72,34 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText4">
+            app:layout_constraintTop_toBottomOf="@+id/tv_adress">
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/tv_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_date"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_date"
                 android:ems="10"
                 android:hint="@string/date_event"
                 android:inputType="date" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/tv_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_access_time"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_access_time"
                 android:ems="10"
                 android:hint="@string/time"
                 android:inputType="time" />
@@ -92,43 +114,52 @@
             app:layout_constraintTop_toBottomOf="@+id/linear">
 
             <EditText
-                android:id="@+id/editText8"
+                android:id="@+id/tv_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="4"
+                android:drawableLeft="@drawable/ic_email_black_"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_email_black_"
                 android:ems="10"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/editText9"
+                android:id="@+id/tv_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_phone_black"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_phone_black"
                 android:ems="10"
                 android:hint="@string/phone"
                 android:inputType="phone" />
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/tv_more_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_more"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/ic_more"
             android:ems="10"
             android:hint="@string/more_details"
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
         <TextView
             android:id="@+id/tv_days_event"
@@ -163,14 +194,13 @@
             android:layout_height="150dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_days_event" />
 
 
         <ImageButton
-            android:id="@+id/bt_add"
+            android:id="@+id/bt_add_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -183,7 +213,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_days_event" />
 
         <ImageButton
-            android:id="@+id/bt_remove"
+            android:id="@+id/bt_remove_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
@@ -192,11 +222,11 @@
             android:contentDescription="@string/remove_day"
             android:src="@drawable/ic_remove"
             app:layout_constraintBottom_toBottomOf="@+id/tv_days_event"
-            app:layout_constraintEnd_toStartOf="@+id/bt_add"
+            app:layout_constraintEnd_toStartOf="@+id/bt_add_day"
             app:layout_constraintTop_toTopOf="@+id/tv_days_event" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/bt_add_locale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -209,7 +239,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_locale_ticket" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/bt_remove_locale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
@@ -218,7 +248,7 @@
             android:contentDescription="@string/add_locale"
             android:src="@drawable/ic_remove"
             app:layout_constraintBottom_toBottomOf="@+id/tv_locale_ticket"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+            app:layout_constraintEnd_toStartOf="@+id/bt_add_locale"
             app:layout_constraintTop_toTopOf="@+id/tv_locale_ticket" />
 
         <TextView
@@ -253,7 +283,6 @@
             android:layout_height="150dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_locale_ticket" />

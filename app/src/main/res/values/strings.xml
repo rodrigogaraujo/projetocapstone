@@ -22,8 +22,11 @@
 
     <string name="day_singer">Dia %1$s - %2$s</string>
     <string name="price_basic">Entrada pista - R$ %1$s</string>
+    <string name="price_basic_value">Entrada pista:</string>
     <string name="price_vip">Entrada VIP - R$ %1$s</string>
+    <string name="price_vip_value">Entrada VIP:</string>
     <string name="price_top">Entrada camarote - R$ %1$s</string>
+    <string name="price_top_value">Entrada camarote:</string>
     <string name="date_city">%1$s - %2$s</string>
     <string name="date_hours">%1$s a partir de %2$s hora(s) </string>
     <string name="priece">O QUE ROLARÁ POR DIA E PREÇO:</string>
@@ -63,4 +66,6 @@
     <string name="new_event">Novo Evento</string>
     <string name="no_event">Nenhuma programação</string>
     <string name="name">Nome da atração</string>
+    <string name="image_of_event">IMAGEM DO EVENTO</string>
+    <string name="ticketi_time">Lote atual:</string>
 </resources>
