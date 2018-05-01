@@ -4,55 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shape_gradient"
     tools:context="party.com.br.party.AddLocaleActivity">
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/tv_adress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:drawableLeft="@drawable/ic_location"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_location"
         android:ems="10"
         android:hint="@string/adress"
-        android:inputType="textPersonName"
+        android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/tv_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/ic_phone_black"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_phone_black"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/phone"
+        android:inputType="textPhonetic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_adress" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/tv_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/ic_email_black_"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_email_black_"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/email"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/bt_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -62,5 +72,5 @@
         android:src="@drawable/ic_check"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 </android.support.constraint.ConstraintLayout>

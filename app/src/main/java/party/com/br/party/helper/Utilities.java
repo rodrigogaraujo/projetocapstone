@@ -3,6 +3,8 @@ package party.com.br.party.helper;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -27,6 +29,12 @@ public class Utilities {
             longitude = addresses.get(0).getLongitude();
         }
         return new LatLng(latitude, longitude);
+    }
+
+    public static Animation animationAlpha(){
+        Animation animation = new AlphaAnimation(1.0f, 0.0f);
+        animation.setDuration(1000);
+        return animation;
     }
 
 }

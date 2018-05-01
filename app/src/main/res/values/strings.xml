@@ -15,6 +15,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_out">Sair</string>
     <string name="banner_event">BANNER DO EVENTO</string>
     <string name="value">VALOR</string>
     <string name="date">DATA</string>
@@ -68,4 +69,17 @@
     <string name="name">Nome da atração</string>
     <string name="image_of_event">IMAGEM DO EVENTO</string>
     <string name="ticketi_time">Lote atual:</string>
+    <string name="confirm">Confirmar</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="filter_events">Filtros de eventos</string>
+    <string name="sertanejo">Sertanejo</string>
+    <string name="samba">Samba</string>
+    <string name="rock">Rock</string>
+    <string name="mpb">MPB</string>
+    <string name="forr">Forró</string>
+    <string name="eletr_nica">Eletrônica</string>
+    <string name="g_neros">Gêneros</string>
+    <string name="maxim">Distância Máxima (em KM)</string>
+    <string name="status_active_or_not">Status (Ativo/Inativo)</string>
+    <string name="text">Uma Frase</string>
 </resources>

@@ -28,14 +28,12 @@
         <activity android:name=".EmailLoginActivity" />
         <activity android:name=".TypeUserActivity" />
         <activity android:name=".CreateUserActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".CreateEventActivity" />
         <activity android:name=".AddDayActivity" />
-        <activity android:name=".AddLocaleActivity"></activity>
+        <activity android:name=".AddLocaleActivity" />
+        <activity android:name=".PreferencesActivity"></activity>
     </application>
 
 </manifest>
