@@ -3,6 +3,8 @@ package party.com.br.party.helper;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
@@ -35,6 +37,12 @@ public class Utilities {
         Animation animation = new AlphaAnimation(1.0f, 0.0f);
         animation.setDuration(1000);
         return animation;
+    }
+
+    public static boolean isConnected(Context context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        return info != null && info.isConnectedOrConnecting();
     }
 
 }

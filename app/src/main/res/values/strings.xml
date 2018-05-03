@@ -82,4 +82,5 @@
     <string name="maxim">Distância Máxima (em KM)</string>
     <string name="status_active_or_not">Status (Ativo/Inativo)</string>
     <string name="text">Uma Frase</string>
+    <string name="no_connection">SEM CONEXÃO, VERIFIQUE E TENTE NOVAMENTE</string>
 </resources>

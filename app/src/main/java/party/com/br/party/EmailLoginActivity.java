@@ -3,7 +3,9 @@ package party.com.br.party;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -13,6 +15,12 @@ public class EmailLoginActivity extends AppCompatActivity  implements View.OnCli
 
     @BindView(R.id.bt_confirm)
     ImageButton mBtConfirm;
+    @BindView(R.id.et_email)
+    EditText mEtEmail;
+    @BindView(R.id.et_pass)
+    EditText mEtPass;
+    @BindView(R.id.progress_login)
+    ProgressBar mProgressEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

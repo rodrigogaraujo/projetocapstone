@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "891104034456",
+    "firebase_url": "https://artful-turbine-152204.firebaseio.com",
+    "project_id": "artful-turbine-152204",
+    "storage_bucket": "artful-turbine-152204.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891104034456:android:d709606f0e211389",
+        "android_client_info": {
+          "package_name": "party.com.br.party"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891104034456-t8gmio0duah6q1dl7ke1664qhoaq42hd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "party.com.br.party",
+            "certificate_hash": "5ed664904b8250bc7179d2c6381ef439d32bdbf1"
+          }
+        },
+        {
+          "client_id": "891104034456-d5ocad778s98v56othdb43l380tbnspt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEtTn7Q5CpfXTxACJcaJURnSBNFGNMWdM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891104034456-d5ocad778s98v56othdb43l380tbnspt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

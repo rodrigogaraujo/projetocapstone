@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +23,10 @@ public class AddDayActivity extends AppCompatActivity implements View.OnClickLis
     EditText mTvValueVip;
     @BindView(R.id.tv_value_top)
     EditText mTvValueTop;
+    @BindView(R.id.et_lote)
+    EditText mEtLote;
+    @BindView(R.id.iv_banner)
+    ImageView mIvBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

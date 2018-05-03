@@ -3,6 +3,7 @@ package party.com.br.party;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import butterknife.BindView;
@@ -13,6 +14,12 @@ public class AddLocaleActivity extends AppCompatActivity implements View.OnClick
 
     @BindView(R.id.bt_confirm)
     ImageButton mBtConfirm;
+    @BindView(R.id.tv_adress)
+    EditText mEtAdress;
+    @BindView(R.id.tv_phone)
+    EditText mEtPhone;
+    @BindView(R.id.tv_email)
+    EditText mEtEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

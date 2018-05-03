@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +29,7 @@ import party.com.br.party.adapter.EventAdapter;
 import party.com.br.party.entity.Day;
 import party.com.br.party.entity.Event;
 import party.com.br.party.entity.LocaleTicket;
+import party.com.br.party.helper.Utilities;
 
 public class InitActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +42,8 @@ public class InitActivity extends AppCompatActivity
     private BottomNavigationView mBottomView;
     @BindView(R.id.progress_event)
     ProgressBar mProgressEvent;
+    @BindView(R.id.verify_connection)
+    TextView mTvConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +116,18 @@ public class InitActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Utilities.isConnected(this)) {
+            mRvEvents.setVisibility(View.VISIBLE);
+            mTvConnection.setVisibility(View.GONE);
+        }else{
+            mRvEvents.setVisibility(View.GONE);
+            mTvConnection.setVisibility(View.VISIBLE);
+        }
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -125,9 +141,7 @@ public class InitActivity extends AppCompatActivity
             startActivity(new Intent(this, CreateEventActivity.class));
         } else if (id == R.id.nav_edit_profile) {
             startActivity(new Intent(this, EditProfileActivity.class));
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_out) {
+        }  else if (id == R.id.nav_out) {
 
         }else if (id == R.id.nav_filter) {
             startActivity(new Intent(this, PreferencesActivity.class));

@@ -26,7 +26,7 @@
     </android.support.v7.widget.CardView>
 
     <EditText
-        android:id="@+id/tv_description"
+        android:id="@+id/et_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -74,7 +74,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+        app:layout_constraintTop_toBottomOf="@+id/et_description" />
 
     <EditText
         android:id="@+id/tv_value_vip"
@@ -113,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_value_vip" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/et_lote"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -161,8 +161,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ticketi_time"
-        app:layout_constraintBottom_toBottomOf="@+id/editText6"
+        app:layout_constraintBottom_toBottomOf="@+id/et_lote"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText6" />
+        app:layout_constraintTop_toTopOf="@+id/et_lote" />
 
 </android.support.constraint.ConstraintLayout>

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/et_km"
         style="@style/font_subtitle"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -41,10 +41,10 @@
         android:layout_marginTop="16dp"
         android:text="@string/status_active_or_not"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/et_km" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switch_active"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -62,10 +62,10 @@
         android:layout_marginTop="16dp"
         android:text="@string/g_neros"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_active" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cb_elec"
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/cb_forro"
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,11 +85,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/forr"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintStart_toEndOf="@+id/cb_elec"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/cb_mpb"
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,11 +97,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/mpb"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2"
+        app:layout_constraintStart_toEndOf="@+id/cb_forro"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/cb_rock"
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,10 +110,10 @@
         android:layout_marginTop="8dp"
         android:text="@string/rock"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/cb_elec" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/cb_samba"
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,20 +121,19 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/samba"
-        app:layout_constraintStart_toEndOf="@+id/checkBox4"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintStart_toEndOf="@+id/cb_rock"
+        app:layout_constraintTop_toBottomOf="@+id/cb_forro" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/cb_sertanejo"
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/sertanejo"
-        app:layout_constraintStart_toEndOf="@+id/checkBox5"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintStart_toEndOf="@+id/cb_samba"
+        app:layout_constraintTop_toBottomOf="@+id/cb_mpb" />
 
     <TextView
         android:id="@+id/textView11"
@@ -146,16 +145,30 @@
         android:layout_marginTop="16dp"
         android:text="@string/text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+        app:layout_constraintTop_toBottomOf="@+id/cb_rock" />
 
     <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="180dp"
+        android:id="@+id/spn_frase"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <ImageButton
+        android:id="@+id/bt_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_check"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

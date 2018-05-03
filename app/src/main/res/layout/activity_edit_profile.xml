@@ -28,7 +28,7 @@
 
 
         <EditText
-            android:id="@+id/tv_name"
+            android:id="@+id/et_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
 
         <EditText
-            android:id="@+id/tv_email"
+            android:id="@+id/et_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -60,10 +60,10 @@
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
         <EditText
-            android:id="@+id/tv_pass"
+            android:id="@+id/et_pass"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -77,10 +77,10 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
         <EditText
-            android:id="@+id/tv_confirm_pass"
+            android:id="@+id/et_confirm_pass"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -94,10 +94,10 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pass" />
+            app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
         <EditText
-            android:id="@+id/tv_phone"
+            android:id="@+id/et_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -111,10 +111,10 @@
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_confirm_pass" />
+            app:layout_constraintTop_toBottomOf="@+id/et_confirm_pass" />
 
         <EditText
-            android:id="@+id/tv_adress"
+            android:id="@+id/et_adress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -128,7 +128,7 @@
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+            app:layout_constraintTop_toBottomOf="@+id/et_phone" />
 
         <ImageButton
             android:id="@+id/bt_confirm"
@@ -143,7 +143,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_adress" />
+            app:layout_constraintTop_toBottomOf="@+id/et_adress" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

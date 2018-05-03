@@ -33,7 +33,7 @@
         </android.support.v7.widget.CardView>
 
         <EditText
-            android:id="@+id/tv_description"
+            android:id="@+id/et_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@+id/card_image" />
 
         <EditText
-            android:id="@+id/tv_adress"
+            android:id="@+id/et_adress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -64,7 +64,7 @@
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_more_details" />
+            app:layout_constraintTop_toBottomOf="@+id/et_more_details" />
 
         <LinearLayout
             android:id="@+id/linear"
@@ -72,10 +72,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_adress">
+            app:layout_constraintTop_toBottomOf="@+id/et_adress">
 
             <EditText
-                android:id="@+id/tv_date"
+                android:id="@+id/et_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -90,7 +90,7 @@
                 android:inputType="date" />
 
             <EditText
-                android:id="@+id/tv_time"
+                android:id="@+id/et_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linear">
 
             <EditText
-                android:id="@+id/tv_email"
+                android:id="@+id/et_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -129,7 +129,7 @@
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/tv_phone"
+                android:id="@+id/et_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -145,7 +145,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/tv_more_details"
+            android:id="@+id/et_more_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -159,7 +159,7 @@
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+            app:layout_constraintTop_toBottomOf="@+id/et_description" />
 
         <TextView
             android:id="@+id/tv_days_event"

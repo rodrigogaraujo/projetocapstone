@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import butterknife.BindView;
@@ -24,6 +25,20 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
     ImageButton mBtAddLocale;
     @BindView(R.id.bt_remove_locale)
     ImageButton mBtRemoveLocale;
+    @BindView(R.id.et_description)
+    EditText mEtDescription;
+    @BindView(R.id.et_more_details)
+    EditText mEtMoreDetails;
+    @BindView(R.id.et_adress)
+    EditText mEtAdress;
+    @BindView(R.id.et_date)
+    EditText mEtDate;
+    @BindView(R.id.et_time)
+    EditText mEtTime;
+    @BindView(R.id.et_email)
+    EditText mEtEmail;
+    @BindView(R.id.et_phone)
+    EditText mEtPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

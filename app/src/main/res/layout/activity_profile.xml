@@ -234,7 +234,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:src="@drawable/ic_email_black"
+                        android:src="@drawable/ic_email_black_"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

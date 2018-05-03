@@ -8,7 +8,7 @@
     tools:context="party.com.br.party.TypeUserActivity">
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/rb_balada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <RadioButton
-        android:id="@+id/radioButton2"
+        android:id="@+id/rb_promotor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -32,7 +32,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+        app:layout_constraintTop_toBottomOf="@+id/rb_balada" />
 
     <TextView
         android:id="@+id/textView3"
@@ -60,5 +60,5 @@
         android:src="@drawable/ic_check"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/rb_promotor" />
 </android.support.constraint.ConstraintLayout>
