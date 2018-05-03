@@ -7,4 +7,13 @@ package party.com.br.party.helper;
 public class Constants {
     public static final String SEND_EVENT = "br.com.party.send_event";
     public static final int DEFAULT_ZOOM = 17;
+    public static final class FIREBASE_REALTIME{
+        public static final String CHILD_USER = "br.com.party.child.user";
+    }
+    public static final class PREFERENCES{
+        public static final String PREFERENCES_NAME = "br.com.party.preferences.name";
+        public static final String PREFERENCES_ID = "br.com.party.preferences.id";
+        public static final String PREFERENCES_EMAIL = "br.com.party.preferences.email";
+        public static final int MODE = 0;
+    }
 }
