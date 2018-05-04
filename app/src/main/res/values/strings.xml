@@ -83,4 +83,10 @@
     <string name="status_active_or_not">Status (Ativo/Inativo)</string>
     <string name="text">Uma Frase</string>
     <string name="no_connection">SEM CONEXÃO, VERIFIQUE E TENTE NOVAMENTE</string>
+    <string name="error_invalid_email">EMAIL OU SENHA INCORRETOS, TENTE NOVAMENTE</string>
+    <string name="error_invalid_pass">SENHAS DIFERENTES</string>
+    <string name="pass_weak">SENHA FRACA</string>
+    <string name="error_email_exists">EMAIL JÁ EXISTE</string>
+    <string name="error_empty">OBRIGATÓRIO</string>
+    <string name="are_welcome">SEJA BEM VINDO</string>
 </resources>

@@ -8,7 +8,13 @@ public class Constants {
     public static final String SEND_EVENT = "br.com.party.send_event";
     public static final int DEFAULT_ZOOM = 17;
     public static final class FIREBASE_REALTIME{
-        public static final String CHILD_USER = "br.com.party.child.user";
+        public static final String CHILD_USER = "user";
+        public static final String CHILD_USER_TYPE_BALADA = "balada";
+        public static final String CHILD_USER_TYPE_PROMOTOR = "promotor";
+    }
+    public static final class INTRO{
+        public static final String SEND_EMAIL = "br.com.party.intro.email";
+        public static final String SEND_TYPE = "br.com.party.intro.type";
     }
     public static final class PREFERENCES{
         public static final String PREFERENCES_NAME = "br.com.party.preferences.name";

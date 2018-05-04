@@ -1,10 +1,9 @@
 package party.com.br.party;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,10 +13,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,13 +27,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import party.com.br.party.adapter.EventAdapter;
+import party.com.br.party.dao.UserDao;
 import party.com.br.party.entity.Day;
 import party.com.br.party.entity.Event;
 import party.com.br.party.entity.LocaleTicket;
+import party.com.br.party.entity.User;
+import party.com.br.party.helper.PartyPreferences;
 import party.com.br.party.helper.Utilities;
+import party.com.br.party.listener.GetByTypeListener;
 
 public class InitActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, GetByTypeListener {
 
     private List<Event> mEvents;
     private EventAdapter mEventAdapter;
@@ -44,6 +49,8 @@ public class InitActivity extends AppCompatActivity
     ProgressBar mProgressEvent;
     @BindView(R.id.verify_connection)
     TextView mTvConnection;
+    private NavigationView mNavigationView;
+    private PartyPreferences mPartyPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +59,16 @@ public class InitActivity extends AppCompatActivity
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        mPartyPreferences = new PartyPreferences(this);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView = findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
 
         mRvEvents = findViewById(R.id.rv_list_event);
         mBottomView = findViewById(R.id.bn_navigation_bottom);
@@ -104,6 +113,7 @@ public class InitActivity extends AppCompatActivity
         mRvEvents.setAdapter(mEventAdapter);
         mProgressEvent.setVisibility(View.GONE);
 
+        new UserDao().getById(mPartyPreferences.getIdUser(), this);
     }
 
     @Override
@@ -142,7 +152,7 @@ public class InitActivity extends AppCompatActivity
         } else if (id == R.id.nav_edit_profile) {
             startActivity(new Intent(this, EditProfileActivity.class));
         }  else if (id == R.id.nav_out) {
-
+            startActivity(new Intent(this, EmailLoginActivity.class));
         }else if (id == R.id.nav_filter) {
             startActivity(new Intent(this, PreferencesActivity.class));
         }
@@ -150,5 +160,32 @@ public class InitActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void getByType(Object o) {
+        User user = (User) o;
+        setMenu(mNavigationView, user);
+    }
+
+    private void setMenu(NavigationView navigationView, User user) {
+        if (navigationView != null) {
+            View view = navigationView.getHeaderView(0);
+            ProgressBar progressBar = view.findViewById(R.id.progress_menu);
+            ImageView pictureDrawer = view.findViewById(R.id.iv_profile);
+            TextView nameDrawer = view.findViewById(R.id.tv_name);
+            TextView emailDrawer = view.findViewById(R.id.tv_email);
+
+            progressBar.setVisibility(View.GONE);
+            pictureDrawer.setVisibility(View.VISIBLE);
+            nameDrawer.setVisibility(View.VISIBLE);
+            emailDrawer.setVisibility(View.VISIBLE);
+            if (user.getPicture().equals(""))
+                pictureDrawer.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_logo));
+            else
+                Picasso.get().load(user.getPicture()).into(pictureDrawer);
+            nameDrawer.setText(user.getName());
+            emailDrawer.setText(user.getEmail());
+        }
     }
 }

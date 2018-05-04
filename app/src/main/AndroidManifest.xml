@@ -3,8 +3,6 @@
     package="party.com.br.party">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -14,19 +12,15 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/api_key_maps" />
-
-        <activity android:name=".InitActivity">
+        <activity android:name=".InitActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity" />
-        <activity android:name=".EmailLoginActivity" />
         <activity android:name=".TypeUserActivity" />
         <activity android:name=".CreateUserActivity" />
         <activity android:name=".ProfileActivity" />
@@ -34,7 +28,10 @@
         <activity android:name=".CreateEventActivity" />
         <activity android:name=".AddDayActivity" />
         <activity android:name=".AddLocaleActivity" />
-        <activity android:name=".PreferencesActivity" android:theme="@style/AppThemeActionBar" />
+        <activity
+            android:name=".PreferencesActivity"
+            android:theme="@style/AppThemeActionBar" />
+        <activity android:name=".EmailLoginActivity" />
     </application>
 
 </manifest>

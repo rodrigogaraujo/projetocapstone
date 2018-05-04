@@ -33,11 +33,11 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/email"
         android:drawableLeft="@drawable/ic_email_white"
         android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_email_white"
+        android:ems="10"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,32 +50,32 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/senha"
         android:drawableLeft="@drawable/ic_lock_white"
         android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_lock_white"
+        android:ems="10"
+        android:hint="@string/senha"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <EditText
-    android:id="@+id/et_confirm_pass"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
-    android:ems="10"
-    android:hint="@string/confirme_sua_senha"
-    android:drawableLeft="@drawable/ic_lock_white"
-    android:drawablePadding="8dp"
-    android:drawableStart="@drawable/ic_lock_white"
-    android:inputType="textPassword"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/et_pass" />
+        android:id="@+id/et_confirm_pass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_lock_white"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_lock_white"
+        android:ems="10"
+        android:hint="@string/confirme_sua_senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
     <EditText
         android:id="@+id/et_phone"
@@ -106,6 +106,7 @@
         android:drawableStart="@drawable/ic_phone_white"
         android:ems="10"
         android:hint="@string/adress"
+        android:imeOptions="actionDone"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,5 +138,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_add_user"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

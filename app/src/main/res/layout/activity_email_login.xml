@@ -49,6 +49,7 @@
         android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_lock_white"
         android:ems="10"
+        android:imeOptions="actionDone"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
