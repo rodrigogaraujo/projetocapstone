@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -37,7 +38,7 @@ import party.com.br.party.helper.Utilities;
 import party.com.br.party.listener.GetByTypeListener;
 
 public class InitActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, GetByTypeListener {
+        implements NavigationView.OnNavigationItemSelectedListener, GetByTypeListener<User> {
 
     private List<Event> mEvents;
     private EventAdapter mEventAdapter;
@@ -51,6 +52,7 @@ public class InitActivity extends AppCompatActivity
     TextView mTvConnection;
     private NavigationView mNavigationView;
     private PartyPreferences mPartyPreferences;
+    private DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +63,10 @@ public class InitActivity extends AppCompatActivity
 
         mPartyPreferences = new PartyPreferences(this);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        mDrawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
         mNavigationView = findViewById(R.id.nav_view);
@@ -163,8 +165,7 @@ public class InitActivity extends AppCompatActivity
     }
 
     @Override
-    public void getByType(Object o) {
-        User user = (User) o;
+    public void getByType(User user) {
         setMenu(mNavigationView, user);
     }
 
@@ -186,6 +187,10 @@ public class InitActivity extends AppCompatActivity
                 Picasso.get().load(user.getPicture()).into(pictureDrawer);
             nameDrawer.setText(user.getName());
             emailDrawer.setText(user.getEmail());
+
+            if(user.getType().equals("balada")) {
+                navigationView.getMenu().findItem((R.id.nav_event)).setVisible(false);
+            }
         }
     }
 }

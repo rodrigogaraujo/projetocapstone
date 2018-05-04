@@ -53,6 +53,7 @@
         android:id="@+id/bn_navigation_bottom"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
         android:layout_gravity="bottom"
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/selector_navigation_itens"

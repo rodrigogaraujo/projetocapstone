@@ -89,4 +89,7 @@
     <string name="error_email_exists">EMAIL JÁ EXISTE</string>
     <string name="error_empty">OBRIGATÓRIO</string>
     <string name="are_welcome">SEJA BEM VINDO</string>
+    <string name="update_profile">ATUALIZAÇÃO DE PERFIL</string>
+    <string name="update_ok">ATUALIZADO COM SUCESSO</string>
+    <string name="ok">OK</string>
 </resources>

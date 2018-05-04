@@ -1,6 +1,7 @@
 package party.com.br.party;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +9,17 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import party.com.br.party.dao.UserDao;
+import party.com.br.party.entity.User;
+import party.com.br.party.helper.PartyPreferences;
+import party.com.br.party.listener.GetByTypeListener;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, GetByTypeListener<User> {
 
     @BindView(R.id.ib_edit)
     ImageButton mBtEdit;
@@ -37,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.bt_favorite)
     ImageButton mBtFavorite;
     CircleImageView mCircleImage;
+    private PartyPreferences mPartyPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +52,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
         mCircleImage = findViewById(R.id.circle_image);
+        mPartyPreferences = new PartyPreferences(this);
 
         mBtEdit.setOnClickListener(this);
+        mPbProfile.setVisibility(View.VISIBLE);
+        new UserDao().getById(mPartyPreferences.getIdUser(), this);
     }
 
     @Override
@@ -56,5 +67,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(new Intent(this, EditProfileActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void getByType(User user) {
+        mPbProfile.setVisibility(View.GONE);
+        mTvAdress.setText(user.getAdress());
+        mTvName.setText(user.getName());
+        mTvEmail.setText(user.getEmail());
+        mTvPhone.setText(user.getPhone());
+        if (user.getPicture().equals(""))
+            mCircleImage.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_logo));
+        else
+            Picasso.get().load(user.getPicture()).into(mCircleImage);
+        if(!user.getId().equals(mPartyPreferences.getIdUser()))
+            mBtEdit.setVisibility(View.GONE);
     }
 }
