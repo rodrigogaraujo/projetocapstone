@@ -7,6 +7,20 @@
     android:background="@drawable/shape_gradient"
     tools:context="party.com.br.party.PreferencesActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/elevation_appbar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_detail"
+            style="@style/toolbar_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/colorWhite" />
+    </android.support.design.widget.AppBarLayout>
+
     <TextView
         android:id="@+id/textView9"
         style="@style/font_subtitle"
@@ -17,7 +31,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/status_active_or_not"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <Switch
         android:id="@+id/switch_active"
@@ -57,8 +71,8 @@
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/forr"
         app:layout_constraintStart_toEndOf="@+id/cb_elec"
@@ -69,8 +83,8 @@
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/mpb"
         app:layout_constraintStart_toEndOf="@+id/cb_forro"
@@ -93,8 +107,8 @@
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/samba"
         app:layout_constraintStart_toEndOf="@+id/cb_rock"
@@ -105,8 +119,8 @@
         style="@style/font_text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/sertanejo"
         app:layout_constraintStart_toEndOf="@+id/cb_samba"
@@ -134,19 +148,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <ImageButton
-        android:id="@+id/bt_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/confirm_change"
-        android:src="@drawable/ic_check"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

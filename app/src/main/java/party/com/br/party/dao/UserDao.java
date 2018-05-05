@@ -61,8 +61,15 @@ public class UserDao {
                     postValues.put(Constants.FIREBASE_REALTIME.CHILD_USER_PICTURE, user.getPicture());
                 if (!user.getType().equals(""))
                     postValues.put(Constants.FIREBASE_REALTIME.CHILD_USER_TYPE, user.getType());
+                if (!user.getText().equals(""))
+                    postValues.put(Constants.FIREBASE_REALTIME.CHILD_USER_TEXT, user.getText());
                 if (user.getInterest() != null)
                     postValues.put(Constants.FIREBASE_REALTIME.CHILD_USER_INTEREST, user.getInterest());
+                if (user.isStatus()) {
+                    postValues.put(Constants.FIREBASE_REALTIME.CHILD_USER_STATUS, false);
+                }else{
+                    postValues.put(Constants.FIREBASE_REALTIME.CHILD_USER_STATUS, true);
+                }
                 mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_USER).child(user.getId()).updateChildren(postValues);
             }
 

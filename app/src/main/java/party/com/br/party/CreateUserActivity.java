@@ -99,13 +99,15 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
             user.setPicture("");
             user.setType(mBundle.getString(Constants.INTRO.SEND_TYPE));
             List<String> interests = new ArrayList<>();
-            interests.add("eletronica");
+            interests.add(Constants.TYPE_INTEREST.ELETRONICA);
             user.setInterest(interests);
+            user.setStatus(true);
+            user.setText(Constants.TEXTS_STATUS.OLA);
             mFirebaseAuth.createUserWithEmailAndPassword(user.getEmail(), mEtPass.getText().toString()).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     mProgress.setVisibility(View.GONE);
                     user.setId(task.getResult().getUser().getUid());
-                    mDatabaseReference.child("user").child(user.getId()).setValue(user);
+                    mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_USER).child(user.getId()).setValue(user);
                     PartyPreferences partyPreferences = new PartyPreferences(this);
                     partyPreferences.clear();
                     partyPreferences.saveUserPreferences(user.getId(), user.getEmail());

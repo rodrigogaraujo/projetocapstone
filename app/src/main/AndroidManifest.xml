@@ -29,8 +29,7 @@
         <activity android:name=".AddDayActivity" />
         <activity android:name=".AddLocaleActivity" />
         <activity
-            android:name=".PreferencesActivity"
-            android:theme="@style/AppThemeActionBar" />
+            android:name=".PreferencesActivity" />
         <activity android:name=".EmailLoginActivity" />
     </application>
 

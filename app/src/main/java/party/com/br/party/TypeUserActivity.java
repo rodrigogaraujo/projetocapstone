@@ -39,18 +39,18 @@ public class TypeUserActivity extends AppCompatActivity implements View.OnClickL
 
     private void buttonConfirm() {
         mBtConfirm.startAnimation(Utilities.animationAlpha());
+        Intent i = new Intent(this, CreateUserActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.INTRO.SEND_EMAIL, getIntent().getStringExtra(Constants.INTRO.SEND_EMAIL));
         if (mBtBalada.isChecked()) {
-            Intent i = new Intent(this, CreateUserActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putString(Constants.INTRO.SEND_EMAIL, getIntent().getStringExtra(Constants.INTRO.SEND_EMAIL));
             if (getIntent().hasExtra(Constants.INTRO.SEND_EMAIL)) {
                 bundle.putString(Constants.INTRO.SEND_TYPE, Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_BALADA);
             } else {
                 bundle.putString(Constants.INTRO.SEND_TYPE, Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_PROMOTOR);
             }
-            i.putExtras(bundle);
-            startActivity(i);
-            this.finish();
         }
+        i.putExtras(bundle);
+        startActivity(i);
+        this.finish();
     }
 }

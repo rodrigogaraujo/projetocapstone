@@ -82,5 +82,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             Picasso.get().load(user.getPicture()).into(mCircleImage);
         if(!user.getId().equals(mPartyPreferences.getIdUser()))
             mBtEdit.setVisibility(View.GONE);
+        if(user.isStatus())
+            mTvActiveAwnser.setText(R.string.active);
+        else
+            mTvActiveAwnser.setText(R.string.inactive);
+        mTvStatus.setText(user.getText());
+
     }
 }

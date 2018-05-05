@@ -18,12 +18,14 @@ public class User implements Parcelable{
     private String phone;
     private String adress;
     private String type;
+    private String text;
     private List<String> interest;
+    private boolean status;
 
     public User() {
     }
 
-    public User(String id, String name, String picture, String email, String phone, String adress, String type, List<String> interest) {
+    public User(String id, String name, String picture, String email, String phone, String adress, String type, String text, List<String> interest, boolean status) {
         this.id = id;
         this.name = name;
         this.picture = picture;
@@ -31,8 +33,11 @@ public class User implements Parcelable{
         this.phone = phone;
         this.adress = adress;
         this.type = type;
+        this.text = text;
         this.interest = interest;
+        this.status = status;
     }
+
 
     protected User(Parcel in) {
         id = in.readString();
@@ -42,8 +47,22 @@ public class User implements Parcelable{
         phone = in.readString();
         adress = in.readString();
         type = in.readString();
+        text = in.readString();
         interest = in.createStringArrayList();
+        status = in.readByte() != 0;
     }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -101,6 +120,14 @@ public class User implements Parcelable{
         this.interest = interest;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public String getType() {
         return type;
     }
@@ -109,17 +136,29 @@ public class User implements Parcelable{
         this.type = type;
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
+    public boolean isStatus() {
+        return status;
+    }
 
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", picture='" + picture + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", adress='" + adress + '\'' +
+                ", type='" + type + '\'' +
+                ", text='" + text + '\'' +
+                ", interest=" + interest +
+                ", status=" + status +
+                '}';
+    }
 
     @Override
     public int describeContents() {
@@ -135,20 +174,8 @@ public class User implements Parcelable{
         dest.writeString(phone);
         dest.writeString(adress);
         dest.writeString(type);
+        dest.writeString(text);
         dest.writeStringList(interest);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", picture='" + picture + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", adress='" + adress + '\'' +
-                ", adress='" + type + '\'' +
-                ", interest=" + interest +
-                '}';
+        dest.writeByte((byte) (status ? 1 : 0));
     }
 }

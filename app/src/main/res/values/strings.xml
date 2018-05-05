@@ -91,5 +91,15 @@
     <string name="are_welcome">SEJA BEM VINDO</string>
     <string name="update_profile">ATUALIZAÇÃO DE PERFIL</string>
     <string name="update_ok">ATUALIZADO COM SUCESSO</string>
+    <string name="update_picture">CONFIRME NO BOTÃO ABAIXO PARA CONCLUIR</string>
+    <string name="update_failure">ATUALIZAÇAO NAO REALIZADA</string>
     <string name="ok">OK</string>
+    <string name="select_picture">Selecione a foto</string>
+    <string name="pass_change">Redefenir senha</string>
+    <string name="change_passs">REDEFINIR SENHA</string>
+    <string name="text_change_pass">UM EMAIL DE REDEFINIÇÃO DE SENHA FOI ENVIADO PARA %1$s</string>
+    <string name="inactive">Inativo</string>
+    <string name="active">Ativo</string>
+    <string name="one_interest">Você deve possuir pelo menos 1 interesse</string>
+    <string name="errror">Erro</string>
 </resources>

@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import party.com.br.party.helper.Constants;
 import party.com.br.party.helper.PartyPreferences;
+import party.com.br.party.helper.Utilities;
 
 public class EmailLoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,6 +53,7 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
 
     private void loginValidate() {
         mProgressEmail.setVisibility(View.VISIBLE);
+        mBtConfirm.startAnimation(Utilities.animationAlpha());
         mEtPass.setEnabled(false);
         mEtEmail.setEnabled(false);
         mFirebaseAuth.fetchSignInMethodsForEmail(mEtEmail.getText().toString()).addOnCompleteListener(task -> {

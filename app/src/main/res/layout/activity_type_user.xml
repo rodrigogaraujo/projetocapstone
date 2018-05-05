@@ -7,32 +7,37 @@
     android:background="@drawable/shape_gradient"
     tools:context="party.com.br.party.TypeUserActivity">
 
-    <RadioButton
-        android:id="@+id/rb_balada"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/events"
-        android:textColor="@color/colorWhite"
-        android:textSize="18sp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-    <RadioButton
-        android:id="@+id/rb_promotor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/promote_events"
-        android:textColor="@color/colorWhite"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_balada" />
+        <RadioButton
+            android:id="@+id/rb_balada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/events"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_promotor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/promote_events"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+    </RadioGroup>
+
 
     <TextView
         android:id="@+id/textView3"
@@ -60,5 +65,5 @@
         android:src="@drawable/ic_check"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_promotor" />
+        app:layout_constraintTop_toBottomOf="@+id/radio" />
 </android.support.constraint.ConstraintLayout>
