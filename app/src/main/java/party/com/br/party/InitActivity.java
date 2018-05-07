@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +18,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -33,6 +37,7 @@ import party.com.br.party.entity.Day;
 import party.com.br.party.entity.Event;
 import party.com.br.party.entity.LocaleTicket;
 import party.com.br.party.entity.User;
+import party.com.br.party.helper.Constants;
 import party.com.br.party.helper.PartyPreferences;
 import party.com.br.party.helper.Utilities;
 import party.com.br.party.listener.GetByTypeListener;
@@ -53,6 +58,8 @@ public class InitActivity extends AppCompatActivity
     private NavigationView mNavigationView;
     private PartyPreferences mPartyPreferences;
     private DrawerLayout mDrawer;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,10 @@ public class InitActivity extends AppCompatActivity
         setContentView(R.layout.activity_init);
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference();
+        mDatabaseReference.keepSynced(true);
 
         mPartyPreferences = new PartyPreferences(this);
 
@@ -85,36 +96,27 @@ public class InitActivity extends AppCompatActivity
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRvEvents.setLayoutManager(mLayoutManager);
 
-        List<Day> days = new ArrayList<>();
-        Day day = new Day("1", 20, 30, 40, 1, new Date(), "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg", "", "Dj Alok");
-        Day day1 = new Day("1", 20, 30, 40, 1, new Date(), "http://agito.com.br/agitoindaiatuba/eventos/1312/5d5df8b4f3_10445958_742604935777987_6258263799971385453_n.jpg", "", "Dj Alok");
-        days.add(day);
-        days.add(day1);
-
-        List<LocaleTicket> locails = new ArrayList<>();
-        LocaleTicket localeTicket = new LocaleTicket("1","Avenida Maria Concebida Costa, 29", "(89)99463-0386", "rodrigoaraujo990@gmail.com");
-        LocaleTicket localeTicket1 = new LocaleTicket("12","Avenida Maria Concebida Costa, 290", "(89)99463-0386", "rodrigoaraujo990@gmail.com");
-        locails.add(localeTicket);
-        locails.add(localeTicket1);
-
-
-        Event marcolandia = new Event("1", "Lollapalooza", "21 aniversário da cidade de marcolândia",
-                "eletrônica", "http://ligadoamusica.com.br/wp-content/uploads/2015/08/lollapalooza-brasil-2016-banner.jpg",
-                "Marcolândia", "Avenida Corinto matos, 23", "+55 (89) 3439-1183", "rodrigoaraujo990@gmail.com", new Date(), 8, locails, days);
-
-
-        Event g3 = new Event("2", "Dj Alok", "Teesteeeeeeee",
-                "eletrônica", "http://agito.com.br/agitoindaiatuba/eventos/1312/5d5df8b4f3_10445958_742604935777987_6258263799971385453_n.jpg",
-                "Juazeiro do Norte", "Avenida Maria Concebida Costa, 29", "+55 (89) 99463-0386","rodrigoaraujo990@gmail.com",  new Date(), 11, locails, days);
-
-
         mEvents = new ArrayList<>();
-        mEvents.add(marcolandia);
-        mEvents.add(g3);
         mEventAdapter = new EventAdapter(this, mEvents);
         mRvEvents.setAdapter(mEventAdapter);
         mProgressEvent.setVisibility(View.GONE);
 
+        mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_EVENT).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot data : dataSnapshot.getChildren()){
+                        Event event = data.getValue(Event.class);
+                        mEvents.add(event);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         new UserDao().getById(mPartyPreferences.getIdUser(), this);
     }
 
@@ -150,7 +152,7 @@ public class InitActivity extends AppCompatActivity
             // Handle the camera action
             startActivity(new Intent(this, ProfileActivity.class));
         } else if (id == R.id.nav_event) {
-            startActivity(new Intent(this, CreateEventActivity.class));
+            startActivity(new Intent(this, EventActivity.class));
         } else if (id == R.id.nav_edit_profile) {
             startActivity(new Intent(this, EditProfileActivity.class));
         }  else if (id == R.id.nav_out) {
@@ -188,7 +190,7 @@ public class InitActivity extends AppCompatActivity
             nameDrawer.setText(user.getName());
             emailDrawer.setText(user.getEmail());
 
-            if(user.getType().equals("balada")) {
+            if(user.getType().equals(Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_BALADA)) {
                 navigationView.getMenu().findItem((R.id.nav_event)).setVisible(false);
             }
         }

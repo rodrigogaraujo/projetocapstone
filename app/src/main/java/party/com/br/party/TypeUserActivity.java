@@ -43,11 +43,9 @@ public class TypeUserActivity extends AppCompatActivity implements View.OnClickL
         Bundle bundle = new Bundle();
         bundle.putString(Constants.INTRO.SEND_EMAIL, getIntent().getStringExtra(Constants.INTRO.SEND_EMAIL));
         if (mBtBalada.isChecked()) {
-            if (getIntent().hasExtra(Constants.INTRO.SEND_EMAIL)) {
-                bundle.putString(Constants.INTRO.SEND_TYPE, Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_BALADA);
-            } else {
-                bundle.putString(Constants.INTRO.SEND_TYPE, Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_PROMOTOR);
-            }
+            bundle.putString(Constants.INTRO.SEND_TYPE, Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_BALADA);
+        }else{
+            bundle.putString(Constants.INTRO.SEND_TYPE, Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_PROMOTOR);
         }
         i.putExtras(bundle);
         startActivity(i);

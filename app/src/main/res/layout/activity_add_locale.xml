@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.santalu.maskedittext.MaskEditText
         android:id="@+id/tv_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,7 +37,8 @@
         android:drawableStart="@drawable/ic_phone_black"
         android:ems="10"
         android:hint="@string/phone"
-        android:inputType="textPhonetic"
+        android:inputType="phone"
+        app:met_mask="(##)#####-####"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +57,7 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

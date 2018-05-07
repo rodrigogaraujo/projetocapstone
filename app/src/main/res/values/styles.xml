@@ -56,7 +56,7 @@
     <style name="font_text_day">
         <item name="android:fontFamily">@font/calibri</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/colorSecundaryText</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginLeft">8dp</item>

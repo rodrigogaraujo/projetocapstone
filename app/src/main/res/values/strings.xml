@@ -68,7 +68,7 @@
     <string name="no_event">Nenhuma programação</string>
     <string name="name">Nome da atração</string>
     <string name="image_of_event">IMAGEM DO EVENTO</string>
-    <string name="ticketi_time">Lote atual:</string>
+    <string name="ticketi_time">QUAL O DIA?</string>
     <string name="confirm">Confirmar</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="filter_events">Filtros de eventos</string>
@@ -102,4 +102,12 @@
     <string name="active">Ativo</string>
     <string name="one_interest">Você deve possuir pelo menos 1 interesse</string>
     <string name="errror">Erro</string>
+    <string name="type_event">TIPO DE EVENTO</string>
+    <string name="city">Cidade</string>
+    <string name="error_date">Erro na data</string>
+    <string name="format_correct">Verifique se o formato da data esta correto, ex: 27/02/1994</string>
+    <string name="virg">,</string>
+    <string name="field_">Campo obrigatório</string>
+    <string name="banner_ok">Banner enviado com sucesso</string>
+    <string name="banner_ok_title">Update de Banner</string>
 </resources>

@@ -86,4 +86,14 @@ public class LocaleTicket implements Parcelable {
         dest.writeString(phone);
         dest.writeString(email);
     }
+
+    @Override
+    public String toString() {
+        return "LocaleTicket{" +
+                "id='" + id + '\'' +
+                ", adress='" + adress + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

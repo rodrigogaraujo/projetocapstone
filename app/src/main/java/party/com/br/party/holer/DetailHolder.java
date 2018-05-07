@@ -62,6 +62,7 @@ public class DetailHolder extends RecyclerView.ViewHolder {
                     Log.d("erroorr", e.getMessage());
                 }
             });
-        }
+        }else
+            mProgressBar.setVisibility(View.GONE);
     }
 }

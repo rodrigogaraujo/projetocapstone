@@ -12,9 +12,9 @@ import java.util.Date;
 public class Day implements Parcelable {
 
     private String id;
-    private double valueBasic;
-    private double valueVip;
-    private double valueTop;
+    private String valueBasic;
+    private String valueVip;
+    private String valueTop;
     private int day;
     private Date date;
     private String picture;
@@ -24,7 +24,7 @@ public class Day implements Parcelable {
     public Day() {
     }
 
-    public Day(String id, double valueBasic, double valueVip, double valueTop, int day, Date date, String picture, String description, String singer) {
+    public Day(String id, String valueBasic, String valueVip, String valueTop, int day, Date date, String picture, String description, String singer) {
         this.id = id;
         this.valueBasic = valueBasic;
         this.valueVip = valueVip;
@@ -38,9 +38,9 @@ public class Day implements Parcelable {
 
     protected Day(Parcel in) {
         id = in.readString();
-        valueBasic = in.readDouble();
-        valueVip = in.readDouble();
-        valueTop = in.readDouble();
+        valueBasic = in.readString();
+        valueVip = in.readString();
+        valueTop = in.readString();
         day = in.readInt();
         picture = in.readString();
         description = in.readString();
@@ -67,9 +67,9 @@ public class Day implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-        dest.writeDouble(valueBasic);
-        dest.writeDouble(valueVip);
-        dest.writeDouble(valueTop);
+        dest.writeString(valueBasic);
+        dest.writeString(valueVip);
+        dest.writeString(valueTop);
         dest.writeInt(day);
         dest.writeString(picture);
         dest.writeString(description);
@@ -84,27 +84,27 @@ public class Day implements Parcelable {
         this.id = id;
     }
 
-    public double getValueBasic() {
+    public String getValueBasic() {
         return valueBasic;
     }
 
-    public void setValueBasic(double valueBasic) {
+    public void setValueBasic(String valueBasic) {
         this.valueBasic = valueBasic;
     }
 
-    public double getValueVip() {
+    public String getValueVip() {
         return valueVip;
     }
 
-    public void setValueVip(double valueVip) {
+    public void setValueVip(String valueVip) {
         this.valueVip = valueVip;
     }
 
-    public double getValueTop() {
+    public String getValueTop() {
         return valueTop;
     }
 
-    public void setValueTop(double valueTop) {
+    public void setValueTop(String valueTop) {
         this.valueTop = valueTop;
     }
 

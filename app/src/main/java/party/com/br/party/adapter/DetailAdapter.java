@@ -44,4 +44,9 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailHolder> {
         else
             return 0;
     }
+
+    public void addItem(Day day) {
+        mDays.add(day);
+        notifyDataSetChanged();
+    }
 }
