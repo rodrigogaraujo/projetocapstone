@@ -49,4 +49,9 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailHolder> {
         mDays.add(day);
         notifyDataSetChanged();
     }
+
+    public void addItens(List<Day> days) {
+        mDays.addAll(days);
+        notifyDataSetChanged();
+    }
 }

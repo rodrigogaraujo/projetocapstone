@@ -28,7 +28,7 @@ public class EventDao {
     }
 
     public void getById(String id, final GetByTypeListener<Event> listener) {
-        Query query = mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_USER).child(id);
+        Query query = mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_EVENT).child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -41,9 +41,10 @@ public class EventDao {
         });
     }
 
-    public void create(Event event){
+    public String create(Event event){
         event.setId(mDatabaseReference.push().getKey());
         mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_EVENT).child(event.getId()).setValue(event);
+        return event.getId();
     }
 
     public void update(Event event){
@@ -78,6 +79,8 @@ public class EventDao {
                     postValues.put(Constants.FIREBASE_REALTIME.CHILD_EVENT_LOCATION, event.getLocation());
                 if (event.getName().equals(""))
                     postValues.put(Constants.FIREBASE_REALTIME.CHILD_EVENT_NAME, event.getName());
+                if (event.getIdPersonGo() != null)
+                    postValues.put(Constants.FIREBASE_REALTIME.CHILD_EVENT_PERSON_GO, event.getIdPersonGo());
 
                 mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_EVENT).child(event.getId()).updateChildren(postValues);
             }

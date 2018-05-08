@@ -47,4 +47,9 @@ public class LocaleTicketAdapter extends RecyclerView.Adapter<LocaleTicketHolder
         mLocales.add(localeTicket);
         notifyDataSetChanged();
     }
+
+    public void addItens(List<LocaleTicket> localeTickets) {
+        mLocales.addAll(localeTickets);
+        notifyDataSetChanged();
+    }
 }

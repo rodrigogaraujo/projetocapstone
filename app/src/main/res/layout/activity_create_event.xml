@@ -83,7 +83,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:drawableLeft="@drawable/ic_date"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_date"
@@ -92,20 +92,23 @@
                 android:inputType="date"
                 app:met_mask="##/##/####" />
 
-            <EditText
-                android:id="@+id/et_time"
+            <com.santalu.maskedittext.MaskEditText
+                android:id="@+id/et_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_access_time"
+                android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_phone_black"
                 android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_access_time"
+                android:drawableStart="@drawable/ic_phone_black"
                 android:ems="10"
-                android:hint="@string/time"
-                android:inputType="time" />
+                android:hint="@string/phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                app:met_mask="(##)#####-####" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -129,24 +132,24 @@
                 android:drawableStart="@drawable/ic_email_black_"
                 android:ems="10"
                 android:hint="@string/email"
+                android:imeOptions="actionNext"
                 android:inputType="textEmailAddress" />
 
-            <com.santalu.maskedittext.MaskEditText
-                android:id="@+id/et_phone"
+            <EditText
+                android:id="@+id/et_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="3"
-                android:drawableLeft="@drawable/ic_phone_black"
+                android:layout_weight="2"
+                android:drawableLeft="@drawable/ic_access_time"
                 android:drawablePadding="8dp"
-                android:drawableStart="@drawable/ic_phone_black"
+                android:drawableStart="@drawable/ic_access_time"
                 android:ems="10"
-                android:hint="@string/phone"
+                android:hint="@string/time"
                 android:imeOptions="actionDone"
-                android:inputType="phone"
-                app:met_mask="(##)#####-####" />
+                android:inputType="time" />
         </LinearLayout>
 
         <EditText
@@ -366,9 +369,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_image" />
+
+        <TextView
+            android:id="@+id/tv_update_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_picture_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_create_event" />
 
     </android.support.constraint.ConstraintLayout>
 

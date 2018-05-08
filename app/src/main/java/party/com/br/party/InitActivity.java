@@ -4,16 +4,16 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,16 +26,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import party.com.br.party.adapter.EventAdapter;
 import party.com.br.party.dao.UserDao;
-import party.com.br.party.entity.Day;
 import party.com.br.party.entity.Event;
-import party.com.br.party.entity.LocaleTicket;
 import party.com.br.party.entity.User;
 import party.com.br.party.helper.Constants;
 import party.com.br.party.helper.PartyPreferences;
@@ -45,16 +42,16 @@ import party.com.br.party.listener.GetByTypeListener;
 public class InitActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GetByTypeListener<User> {
 
+    @BindView(R.id.progress_event)
+    ProgressBar mProgressEvent;
+    @BindView(R.id.verify_connection)
+    TextView mTvConnection;
     private List<Event> mEvents;
     private EventAdapter mEventAdapter;
     private RecyclerView mRvEvents;
     private LinearLayoutManager mLayoutManager;
     private Toolbar mToolbar;
     private BottomNavigationView mBottomView;
-    @BindView(R.id.progress_event)
-    ProgressBar mProgressEvent;
-    @BindView(R.id.verify_connection)
-    TextView mTvConnection;
     private NavigationView mNavigationView;
     private PartyPreferences mPartyPreferences;
     private DrawerLayout mDrawer;
@@ -97,19 +94,20 @@ public class InitActivity extends AppCompatActivity
         mRvEvents.setLayoutManager(mLayoutManager);
 
         mEvents = new ArrayList<>();
-        mEventAdapter = new EventAdapter(this, mEvents);
-        mRvEvents.setAdapter(mEventAdapter);
-        mProgressEvent.setVisibility(View.GONE);
+        mProgressEvent.setVisibility(View.VISIBLE);
 
         mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_EVENT).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    for(DataSnapshot data : dataSnapshot.getChildren()){
+                mProgressEvent.setVisibility(View.GONE);
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
                         Event event = data.getValue(Event.class);
                         mEvents.add(event);
                     }
                 }
+                mEventAdapter = new EventAdapter(InitActivity.this, mEvents);
+                mRvEvents.setAdapter(mEventAdapter);
             }
 
             @Override
@@ -122,7 +120,7 @@ public class InitActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -133,10 +131,10 @@ public class InitActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if(Utilities.isConnected(this)) {
+        if (Utilities.isConnected(this)) {
             mRvEvents.setVisibility(View.VISIBLE);
             mTvConnection.setVisibility(View.GONE);
-        }else{
+        } else {
             mRvEvents.setVisibility(View.GONE);
             mTvConnection.setVisibility(View.VISIBLE);
         }
@@ -155,10 +153,12 @@ public class InitActivity extends AppCompatActivity
             startActivity(new Intent(this, EventActivity.class));
         } else if (id == R.id.nav_edit_profile) {
             startActivity(new Intent(this, EditProfileActivity.class));
-        }  else if (id == R.id.nav_out) {
+        } else if (id == R.id.nav_out) {
             startActivity(new Intent(this, EmailLoginActivity.class));
-        }else if (id == R.id.nav_filter) {
+        } else if (id == R.id.nav_filter) {
             startActivity(new Intent(this, PreferencesActivity.class));
+        }else if (id == R.id.nav_my_events) {
+            startActivity(new Intent(this, MyEventsActivity.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -190,8 +190,10 @@ public class InitActivity extends AppCompatActivity
             nameDrawer.setText(user.getName());
             emailDrawer.setText(user.getEmail());
 
-            if(user.getType().equals(Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_BALADA)) {
+            if (user.getType().equals(Constants.FIREBASE_REALTIME.CHILD_USER_TYPE_BALADA)) {
                 navigationView.getMenu().findItem((R.id.nav_event)).setVisible(false);
+                navigationView.getMenu().findItem((R.id.nav_my_events)).setVisible(false);
+                navigationView.getMenu().findItem((R.id.group_event)).setVisible(false);
             }
         }
     }

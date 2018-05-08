@@ -37,9 +37,11 @@ import party.com.br.party.entity.Event;
 import party.com.br.party.entity.LocaleTicket;
 import party.com.br.party.helper.Constants;
 import party.com.br.party.helper.Lists;
+import party.com.br.party.helper.PartyPreferences;
 import party.com.br.party.helper.Utilities;
+import party.com.br.party.listener.GetByTypeListener;
 
-public class EventActivity extends AppCompatActivity implements View.OnClickListener {
+public class EventActivity extends AppCompatActivity implements View.OnClickListener, GetByTypeListener<Event> {
 
     @BindView(R.id.iv_banner)
     ImageView mIvBanner;
@@ -71,6 +73,8 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
     TextView mTvNoItensLocales;
     @BindView(R.id.tv_no_itens_days)
     TextView mTvNoItensDays;
+    @BindView(R.id.tv_update_picture)
+    TextView mTvTextPicture;
     @BindView(R.id.spn_type)
     Spinner mSpnType;
     @BindView(R.id.progress_create_event)
@@ -85,7 +89,10 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
     private LocaleTicketAdapter mLocaleTicketAdapter;
     private List<Day> mDays;
     private List<LocaleTicket> mLocales;
+    private List<String> mIdsGo;
     private String mIdEvent;
+    private SimpleDateFormat mDateFormat;
+    private PartyPreferences mPartyPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,13 +104,18 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         mRvDays = findViewById(R.id.rv_days_event);
         mRvLocales = findViewById(R.id.rv_locale_ticket);
 
+        mPartyPreferences = new PartyPreferences(this);
+
         mIdEvent = "";
         mPicture = "";
         mStorageReference = FirebaseStorage.getInstance().getReference();
 
-        if(getIntent().hasExtra(Constants.SEND_EVENT) && getIntent().getExtras() != null){
+        if (getIntent().hasExtra(Constants.SEND_EVENT) && getIntent().getExtras() != null) {
             mIdEvent = getIntent().getStringExtra(Constants.SEND_EVENT);
+            new EventDao().getById(mIdEvent, this);
         }
+
+        mIdsGo = new ArrayList<>();
 
         mDays = new ArrayList<>();
         mDetailAdapter = new DetailAdapter(this, mDays);
@@ -129,11 +141,21 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         mBtAddLocale.setOnClickListener(this);
         mBtRemoveLocale.setOnClickListener(this);
         mIvBanner.setOnClickListener(this);
+
+        mDateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("BR"));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        verifyDatas();
+
+        if (!mIdEvent.equals("")) {
+            new EventDao().getById(mIdEvent, this);
+        }
+    }
+
+    private void verifyDatas() {
         if (mLocaleTicketAdapter.getItemCount() > 0) {
             mTvNoItensLocales.setVisibility(View.GONE);
             mRvLocales.setVisibility(View.VISIBLE);
@@ -203,25 +225,42 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
     private void confirmButton() {
         mBtConfirm.startAnimation(Utilities.animationAlpha());
         Event event = new Event();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("BR"));
         try {
-            event.setDate(dateFormat.parse(mEtDate.getText().toString()));
-            event.setName(mEtDescription.getText().toString());
-            event.setAdress(mEtAdress.getText().toString());
-            event.setContact(mEtPhone.getText().toString());
-            event.setEmail(mEtEmail.getText().toString());
-            event.setHours(Integer.parseInt(mEtTime.getText().toString()));
-            event.setDescription(mEtMoreDetails.getText().toString());
-            event.setPicture(mPicture);
-            event.setLocation(mEtCity.getText().toString().concat(getString(R.string.virg)).concat(mSpnState.getSelectedItem().toString()));
-            event.setType(mSpnType.getSelectedItem().toString());
-            event.setDays(mDays);
-            event.setLocaleTickets(mLocales);
-            if(!mIdEvent.equals("")){
-                event.setId(mIdEvent);
-                new EventDao().update(event);
-            }else{
-                new EventDao().create(event);
+            if(mEtDate.getText().toString().equals("") || mEtDescription.getText().toString().equals("") || mEtTime.getText().toString().equals("")
+                    || mEtAdress.getText().toString().equals("") || mEtCity.getText().toString().equals("") || mEtEmail.getText().toString().equals("")
+                    || mEtPhone.getText().toString().equals("")){
+                Utilities.confirmDialog(this, getString(R.string.error_empty), getString(R.string.error_create_event));
+            }else {
+                event.setIdAdmin(mPartyPreferences.getIdUser());
+                event.setDate(mDateFormat.parse(mEtDate.getText().toString()));
+                event.setName(mEtDescription.getText().toString());
+                event.setAdress(mEtAdress.getText().toString());
+                event.setContact(mEtPhone.getText().toString());
+                event.setEmail(mEtEmail.getText().toString());
+                event.setHours(Integer.parseInt(mEtTime.getText().toString()));
+                event.setDescription(mEtMoreDetails.getText().toString());
+                event.setPicture(mPicture);
+                event.setLocation(mEtCity.getText().toString().concat(getString(R.string.virg)).concat(mSpnState.getSelectedItem().toString()));
+                event.setType(mSpnType.getSelectedItem().toString());
+                event.setDays(mDays);
+                event.setLocaleTickets(mLocales);
+                mIdsGo.add(mPartyPreferences.getIdUser());
+                event.setIdPersonGo(mIdsGo);
+                if (mDays.size() == 0) {
+                    Utilities.confirmDialog(this, getString(R.string.error_empty), getString(R.string.error_day_empty));
+                } else if (mLocales.size() == 0) {
+                    Utilities.confirmDialog(this, getString(R.string.error_empty), getString(R.string.error_locale_empty));
+                } else {
+                    if (!mIdEvent.equals("")) {
+                        event.setId(mIdEvent);
+                        new EventDao().update(event);
+                        Utilities.confirmDialog(this, getString(R.string.update_event_title), getString(R.string.update_event));
+                    } else {
+                        String id = new EventDao().create(event);
+                        Utilities.confirmDialog(this, getString(R.string.event_create_title), getString(R.string.event_create));
+                        mIdEvent = id;
+                    }
+                }
             }
         } catch (ParseException e) {
             Utilities.confirmDialog(this, getString(R.string.error_date), getString(R.string.format_correct));
@@ -257,23 +296,50 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                     mLocales.add(localeTicket);
                 }
             }
-        }else if (requestCode == Constants.PICTURE.SELECT_IMAGE) {
+        } else if (requestCode == Constants.PICTURE.SELECT_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     enableEditText(false);
                     mProgressBar.setVisibility(View.VISIBLE);
+                    mTvTextPicture.setVisibility(View.VISIBLE);
                     Uri selectedImgUri = data.getData();
                     StorageReference reference = mStorageReference.child(Constants.FIREBASE_STORAGE.CHILD_PHOTO_BANNER).child(selectedImgUri.getLastPathSegment());
                     reference.putFile(selectedImgUri).addOnSuccessListener(taskSnapshot -> {
                         mPicture = taskSnapshot.getDownloadUrl().toString();
                         mProgressBar.setVisibility(View.GONE);
+                        mTvTextPicture.setVisibility(View.GONE);
                         Picasso.get().load(mPicture).into(mIvBanner);
                         enableEditText(true);
                         Utilities.confirmDialog(EventActivity.this, getString(R.string.banner_ok_title), getString(R.string.banner_ok));
                     });
                 }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
             }
         }
+    }
+
+    @Override
+    public void getByType(Event event) {
+        if (event.getDate() != null)
+            mEtDate.setText(mDateFormat.format(event.getDate()));
+        mEtDescription.setText(event.getName());
+        mEtAdress.setText(event.getAdress());
+        mEtPhone.setText(event.getContact());
+        mEtEmail.setText(event.getEmail());
+        mEtTime.setText(String.valueOf(event.getHours()));
+        mEtMoreDetails.setText(event.getDescription());
+        mPicture = event.getPicture();
+        Picasso.get().load(mPicture).into(mIvBanner);
+        String line = event.getLocation();
+        String values[] = line.split(",");
+        mEtCity.setText(values[0]);
+        mSpnState.setSelection(Lists.getStates().indexOf(values[1]));
+        mSpnType.setSelection(Lists.getTypes().indexOf(event.getType()));
+        mDays.clear();
+        mDays.addAll(event.getDays());
+        mLocales.clear();
+        mLocales.addAll(event.getLocaleTickets());
+        mIdsGo.clear();
+        mIdsGo.addAll(event.getIdPersonGo());
+        verifyDatas();
     }
 }

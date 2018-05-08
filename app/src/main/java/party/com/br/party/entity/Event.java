@@ -13,6 +13,7 @@ import java.util.List;
 public class Event implements Parcelable {
 
     private String id;
+    private String idAdmin;
     private String name;
     private String description;
     private String type;
@@ -25,12 +26,14 @@ public class Event implements Parcelable {
     private int hours;
     private List<LocaleTicket> localeTickets;
     private List<Day> days;
+    private List<String> idPersonGo;
 
     public Event() {
     }
 
-    public Event(String id, String name, String description, String type, String picture, String location, String adress, String contact, String email, Date date, int hours, List<LocaleTicket> localeTickets, List<Day> days) {
+    public Event(String id, String idAdmin, String name, String description, String type, String picture, String location, String adress, String contact, String email, Date date, int hours, List<LocaleTicket> localeTickets, List<Day> days, List<String> idPersonGo) {
         this.id = id;
+        this.idAdmin = idAdmin;
         this.name = name;
         this.description = description;
         this.type = type;
@@ -43,10 +46,13 @@ public class Event implements Parcelable {
         this.hours = hours;
         this.localeTickets = localeTickets;
         this.days = days;
+        this.idPersonGo = idPersonGo;
     }
+
 
     protected Event(Parcel in) {
         id = in.readString();
+        idAdmin = in.readString();
         name = in.readString();
         description = in.readString();
         type = in.readString();
@@ -55,9 +61,11 @@ public class Event implements Parcelable {
         adress = in.readString();
         contact = in.readString();
         email = in.readString();
+        date = new Date(in.readLong());
         hours = in.readInt();
         localeTickets = in.createTypedArrayList(LocaleTicket.CREATOR);
         days = in.createTypedArrayList(Day.CREATOR);
+        idPersonGo = in.createStringArrayList();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -76,6 +84,7 @@ public class Event implements Parcelable {
     public String toString() {
         return "Event{" +
                 "id='" + id + '\'' +
+                ", idAdmin='" + idAdmin + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
@@ -88,6 +97,7 @@ public class Event implements Parcelable {
                 ", hours=" + hours +
                 ", localeTickets=" + localeTickets +
                 ", days=" + days +
+                ", idPersonGo=" + idPersonGo +
                 '}';
     }
 
@@ -97,6 +107,14 @@ public class Event implements Parcelable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(String idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public String getName() {
@@ -195,6 +213,14 @@ public class Event implements Parcelable {
         this.days = days;
     }
 
+    public List<String> getIdPersonGo() {
+        return idPersonGo;
+    }
+
+    public void setIdPersonGo(List<String> idPersonGo) {
+        this.idPersonGo = idPersonGo;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -203,6 +229,7 @@ public class Event implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
+        dest.writeString(idAdmin);
         dest.writeString(name);
         dest.writeString(description);
         dest.writeString(type);
@@ -211,8 +238,12 @@ public class Event implements Parcelable {
         dest.writeString(adress);
         dest.writeString(contact);
         dest.writeString(email);
+        dest.writeLong(date.getTime());
         dest.writeInt(hours);
         dest.writeTypedList(localeTickets);
         dest.writeTypedList(days);
+        dest.writeStringList(idPersonGo);
     }
+
+
 }

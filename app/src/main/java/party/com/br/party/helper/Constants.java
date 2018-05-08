@@ -33,9 +33,10 @@ public class Constants {
         public static final String CHILD_EVENT_TYPE = "type";
         public static final String CHILD_EVENT_DAYS = "days";
         public static final String CHILD_EVENT_HOURS = "hours";
-        public static final String CHILD_EVENT_LOCALE_TICKETS = "locale_tickets";
+        public static final String CHILD_EVENT_LOCALE_TICKETS = "localeTickets";
         public static final String CHILD_EVENT_LOCATION = "location";
         public static final String CHILD_EVENT_NAME = "name";
+        public static final String CHILD_EVENT_PERSON_GO = "idPersonGo";
     }
 
     public static final class TYPE_INTEREST {
@@ -80,6 +81,7 @@ public class Constants {
     public static final class EVENT_ACTION {
         public static final int ADD_DAY = 12;
         public static final int ADD_LOCALE = 13;
+        public static final int GET_DAY = 13;
     }
 
     public static final class STATES {

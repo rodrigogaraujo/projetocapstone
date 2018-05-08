@@ -67,7 +67,9 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
             mTvName.setText(event.getName());
             mIvBanner.setOnClickListener(this);
             String stringDate = DateFormat.getDateInstance().format(event.getDate());
-            mTvCityDate.setText(mContext.getResources().getString(R.string.date_city, event.getLocation(), stringDate));
+            String line = event.getLocation();
+            String values[] = line.split(",");
+            mTvCityDate.setText(mContext.getResources().getString(R.string.date_city, values[0], stringDate));
             mEvent = event;
         }
     }

@@ -28,9 +28,9 @@
         <activity android:name=".EventActivity" />
         <activity android:name=".AddDayActivity" />
         <activity android:name=".AddLocaleActivity" />
-        <activity
-            android:name=".PreferencesActivity" />
+        <activity android:name=".PreferencesActivity" />
         <activity android:name=".EmailLoginActivity" />
+        <activity android:name=".MyEventsActivity"></activity>
     </application>
 
 </manifest>

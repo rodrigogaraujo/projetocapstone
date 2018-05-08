@@ -41,4 +41,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
     public int getItemCount() {
         return mEvents.size();
     }
+
+    public void add(Event event){
+        mEvents.add(event);
+        notifyDataSetChanged();
+    }
 }

@@ -3,26 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_person"
-            android:title="@string/profile" />
-        <item
-            android:id="@+id/nav_edit_profile"
-            android:icon="@drawable/ic_mode_edit_black"
-            android:title="@string/edit_profile" />
-        <item
-            android:id="@+id/nav_filter"
-            android:icon="@drawable/ic_filter_list"
-            android:title="@string/filter_events" />
-        <item
-            android:id="@+id/nav_event"
-            android:icon="@drawable/ic_event"
-            android:title="@string/new_event" />
-        <item
-            android:id="@+id/nav_out"
-            android:icon="@drawable/ic_exit_to_app"
-            android:title="@string/out" />
-    </group>
+    <item android:title="@string/my_options">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_person"
+                android:title="@string/profile" />
+            <item
+                android:id="@+id/nav_edit_profile"
+                android:icon="@drawable/ic_mode_edit_black"
+                android:title="@string/edit_profile" />
+            <item
+                android:id="@+id/nav_filter"
+                android:icon="@drawable/ic_filter_list"
+                android:title="@string/filter_events" />
+        </menu>
+    </item>
+    <item android:title="@string/events_" android:id="@+id/group_event">
+        <menu>
+            <item
+                android:id="@+id/nav_event"
+                android:icon="@drawable/ic_event"
+                android:title="@string/new_event" />
+            <item
+                android:id="@+id/nav_my_events"
+                android:icon="@drawable/ic_list"
+                android:title="@string/my_events" />
+        </menu>
+    </item>
+
+    <item android:title="@string/more_options">
+        <menu>
+            <item
+                android:id="@+id/nav_out"
+                android:icon="@drawable/ic_exit_to_app"
+                android:title="@string/out" />
+        </menu>
+    </item>
+
 </menu>

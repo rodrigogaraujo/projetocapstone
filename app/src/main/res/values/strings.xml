@@ -40,6 +40,8 @@
     <string name="say_email">Nos informe seu email</string>
     <string name="say_us">Nos diga, você está atrás de?</string>
     <string name="events">Baladas</string>
+    <string name="events_">Eventos</string>
+    <string name="more_options">Mais opções</string>
     <string name="promote_events">Promover eventos</string>
     <string name="create_user">Você não possui cadastro.. Nos confirme alguns dados.</string>
     <string name="all_name">Nome Completo</string>
@@ -56,8 +58,8 @@
     <string name="confirm_change">Confirme as alterações</string>
     <string name="image_profile">Imagem do perfil</string>
     <string name="description_event">Descrição do evento</string>
-    <string name="date_event">Data do evento</string>
-    <string name="time">Horário do evento</string>
+    <string name="date_event">Data</string>
+    <string name="time">Horário</string>
     <string name="remove_day">Remover Dia</string>
     <string name="add_day">Adicionar Dia</string>
     <string name="days_event">DIAS DO EVENTO</string>
@@ -65,6 +67,7 @@
     <string name="add_locale">ADICIONAR LOCAL</string>
     <string name="remove_locale">Remover local</string>
     <string name="new_event">Novo Evento</string>
+    <string name="my_events">Meus Eventos</string>
     <string name="no_event">Nenhuma programação</string>
     <string name="name">Nome da atração</string>
     <string name="image_of_event">IMAGEM DO EVENTO</string>
@@ -110,4 +113,13 @@
     <string name="field_">Campo obrigatório</string>
     <string name="banner_ok">Banner enviado com sucesso</string>
     <string name="banner_ok_title">Update de Banner</string>
+    <string name="update_event">Evento atualizado com sucesso!</string>
+    <string name="update_event_title">ATUALIZAÇÃO DE EVENTO</string>
+    <string name="error_create_event">Por favor verifique se todos os campos estão preenchidos e tente novamente!</string>
+    <string name="error_day_empty">ADICIONE PELO MENOS UM DIA DE EVENTO E TENTE NOVAMENTE</string>
+    <string name="error_locale_empty">ADICIONE PELO MENOS UM LOCAL PARA TROCA DE INGRESSO E TENTE NOVAMENTE</string>
+    <string name="my_options">Minhas opções</string>
+    <string name="upload_picture_text">Seu upload está sendo realizado, aguarde.</string>
+    <string name="event_create_title">EVENTO CRIADO</string>
+    <string name="event_create">Evento criado com sucesso!</string>
 </resources>
