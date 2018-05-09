@@ -52,17 +52,21 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void loginValidate() {
-        mProgressEmail.setVisibility(View.VISIBLE);
-        mBtConfirm.startAnimation(Utilities.animationAlpha());
-        mEtPass.setEnabled(false);
-        mEtEmail.setEnabled(false);
-        mFirebaseAuth.fetchSignInMethodsForEmail(mEtEmail.getText().toString()).addOnCompleteListener(task -> {
-            if (task.getResult().getSignInMethods().size() > 0) {
-                signUserIn();
-            } else {
-                signUserUp(mEtEmail.getText().toString());
-            }
-        });
+        if(Utilities.isConnected(this)) {
+            mProgressEmail.setVisibility(View.VISIBLE);
+            mBtConfirm.startAnimation(Utilities.animationAlpha());
+            mEtPass.setEnabled(false);
+            mEtEmail.setEnabled(false);
+            mFirebaseAuth.fetchSignInMethodsForEmail(mEtEmail.getText().toString()).addOnCompleteListener(task -> {
+                if (task.getResult().getSignInMethods().size() > 0) {
+                    signUserIn();
+                } else {
+                    signUserUp(mEtEmail.getText().toString());
+                }
+            });
+        }else{
+            Utilities.confirmDialog(this, getString(R.string.error_conected), getString(R.string.error_conected_message));
+        }
     }
 
     private void signUserUp(String email) {
@@ -77,7 +81,6 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
         mFirebaseAuth.signInWithEmailAndPassword(mEtEmail.getText().toString(), mEtPass.getText().toString()).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 mProgressEmail.setVisibility(View.GONE);
-                Log.d("okok", "passou aqui");
                 mPartyPreferences.clear();
                 mPartyPreferences.saveUserPreferences(task.getResult().getUser().getUid(),task.getResult().getUser().getEmail());
                 startActivity(new Intent(this, InitActivity.class));

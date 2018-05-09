@@ -3,7 +3,7 @@ package party.com.br.party;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
+import android.os.Parcelable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -62,6 +61,7 @@ public class InitActivity extends AppCompatActivity
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private FirebaseJobDispatcher mDispatcher;
+    private Parcelable mListState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,13 +104,16 @@ public class InitActivity extends AppCompatActivity
         new UserDao().getById(mPartyPreferences.getIdUser(), this);
         if(mDispatcher == null)
             mDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
-
-        if(!getIntent().hasExtra(Constants.SEND_EVENT_NOTIFICATION)) {
-            Job myJob = mDispatcher.newJobBuilder()
-                    .setService(EventJobService.class)
-                    .setTag("my-unique-tag")
-                    .build();
-            mDispatcher.mustSchedule(myJob);
+        if(savedInstanceState == null){
+            if(!getIntent().hasExtra(Constants.SEND_EVENT_NOTIFICATION)) {
+                Job myJob = mDispatcher.newJobBuilder()
+                        .setService(EventJobService.class)
+                        .setTag("my-unique-tag")
+                        .build();
+                mDispatcher.mustSchedule(myJob);
+            }
+        }else{
+            onRestoreInstanceState(savedInstanceState);
         }
     }
 
@@ -141,6 +144,19 @@ public class InitActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        mListState = mLayoutManager.onSaveInstanceState();
+        savedInstanceState.putParcelable(Constants.LIST_STATE_KEY, mListState);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    protected void onRestoreInstanceState(Bundle state) {
+        super.onRestoreInstanceState(state);
+        if(state != null)
+            mListState = state.getParcelable(Constants.LIST_STATE_KEY);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mDispatcher.cancel("my-unique-tag");
@@ -165,6 +181,9 @@ public class InitActivity extends AppCompatActivity
         } else {
             mRvEvents.setVisibility(View.GONE);
             mTvConnection.setVisibility(View.VISIBLE);
+        }
+        if (mListState != null) {
+            mLayoutManager.onRestoreInstanceState(mListState);
         }
     }
 

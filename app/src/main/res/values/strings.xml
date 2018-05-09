@@ -127,4 +127,6 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="last_event">ULTIMOS EVENTOS VISUALIZADOS</string>
+    <string name="error_conected">ERRO AO CONECTAR</string>
+    <string name="error_conected_message">VERIFIQUE SUA CONEXÃO E TENTE NOVAMENTE</string>
 </resources>

@@ -66,9 +66,10 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
             remoteViews.setTextViewText(android.R.id.text1, mEvents.get(position).getName());
             Bundle bundle = new Bundle();
             bundle.putParcelable(Constants.SEND_EVENT, mEvents.get(position));
-            Intent intent = new Intent();
+            Intent intent = new Intent(mContext, DetailActivity.class);
             intent.putExtras(bundle);
-            remoteViews.setOnClickFillInIntent(R.id.widget_list, intent);
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setOnClickPendingIntent(R.id.widget_list, pendingIntent);
         }
         return remoteViews;
     }

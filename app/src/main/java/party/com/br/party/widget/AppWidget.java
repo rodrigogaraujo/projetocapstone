@@ -1,5 +1,6 @@
 package party.com.br.party.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -11,6 +12,7 @@ import android.widget.RemoteViews;
 import java.util.ArrayList;
 import java.util.List;
 
+import party.com.br.party.DetailActivity;
 import party.com.br.party.R;
 import party.com.br.party.entity.Event;
 import party.com.br.party.helper.Constants;
@@ -31,7 +33,7 @@ public class AppWidget extends AppWidgetProvider {
             Bundle bundle = intent.getExtras();
             if (bundle.getParcelable(Constants.SEND_EVENT) != null) {
                 Event event = bundle.getParcelable(Constants.SEND_EVENT);
-                if(mPartyPreferences.getListEvents() == null) {
+                if(mPartyPreferences.getListEvents() != null) {
                     if (mPartyPreferences.getListEvents().size() > 5) {
                         List<Event> events = mPartyPreferences.getListEvents();
                         events.remove(events.size() - 1);

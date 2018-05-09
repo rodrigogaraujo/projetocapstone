@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -49,7 +51,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private PartyPreferences mPartyPreferences;
     private String mPicture;
     private StorageReference mStorageReference;
-    CircleImageView mIvProfile;
+    private CircleImageView mIvProfile;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,12 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         mProgressBar.setVisibility(View.VISIBLE);
 
         mPicture = "";
-        new UserDao().getById(mPartyPreferences.getIdUser(), this);
+        if(savedInstanceState == null) {
+            new UserDao().getById(mPartyPreferences.getIdUser(), this);
+        }else{
+            onRestoreInstanceState(savedInstanceState);
+            mProgressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -84,6 +92,37 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 changePass();
                 break;
         }
+    }
+    private void setUserData(User userData){
+        mEtAdress.setText(userData.getAdress());
+        mEtEmail.setText(userData.getEmail());
+        mEtName.setText(userData.getName());
+        mEtPhone.setText(userData.getName());
+        mPicture = userData.getPicture();
+        if (mPicture.equals(""))
+            mIvProfile.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_logo));
+        else
+            Picasso.get().load(mPicture).into(mIvProfile);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mUser != null)
+            setUserData(mUser);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(Constants.SEND_PERSON, getUser(null));
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null)
+            mUser = savedInstanceState.getParcelable(Constants.SEND_PERSON);
     }
 
     private void changePass() {
@@ -131,25 +170,34 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    private User getUser(User user){
+        if(user == null)
+            user = new User();
+        return new User(mPartyPreferences.getIdUser(), mEtName.getText().toString(), mPicture, mEtEmail.getText().toString(), mEtPhone.getText().toString(), mEtAdress.getText().toString(), "", "", null, !user.isStatus());
+    }
+
     private void confirmButton() {
-        mProgressBar.setVisibility(View.VISIBLE);
-        mBtConfirm.startAnimation(Utilities.animationAlpha());
-        if (mEtName.getText().toString().equals("")) {
-            mEtName.setError(getString(R.string.error_empty));
-        } else if (mEtAdress.getText().toString().equals("")) {
-            mEtAdress.setError(getString(R.string.error_empty));
-        } else if (mEtPhone.getText().toString().equals("")) {
-            mEtPhone.setError(getString(R.string.error_empty));
-        } else {
-            new UserDao().getById(mPartyPreferences.getIdUser(), new GetByTypeListener<User>() {
-                @Override
-                public void getByType(User user1) {
-                    User user = new User(mPartyPreferences.getIdUser(), mEtName.getText().toString(), mPicture, mEtEmail.getText().toString(), mEtPhone.getText().toString(), mEtAdress.getText().toString(), "", "", null, !user1.isStatus());
-                    new UserDao().update(user);
-                }
-            });
-            mProgressBar.setVisibility(View.GONE);
-            Utilities.confirmDialog(this, getString(R.string.update_profile), getString(R.string.update_ok));
+        if(Utilities.isConnected(this)) {
+            mProgressBar.setVisibility(View.VISIBLE);
+            mBtConfirm.startAnimation(Utilities.animationAlpha());
+            if (mEtName.getText().toString().equals("")) {
+                mEtName.setError(getString(R.string.error_empty));
+            } else if (mEtAdress.getText().toString().equals("")) {
+                mEtAdress.setError(getString(R.string.error_empty));
+            } else if (mEtPhone.getText().toString().equals("")) {
+                mEtPhone.setError(getString(R.string.error_empty));
+            } else {
+                new UserDao().getById(mPartyPreferences.getIdUser(), new GetByTypeListener<User>() {
+                    @Override
+                    public void getByType(User user1) {
+                        new UserDao().update(getUser(user1));
+                    }
+                });
+                mProgressBar.setVisibility(View.GONE);
+                Utilities.confirmDialog(this, getString(R.string.update_profile), getString(R.string.update_ok));
+            }
+        }else {
+            Utilities.confirmDialog(this, getString(R.string.error_conected), getString(R.string.error_conected_message));
         }
     }
 
