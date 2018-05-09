@@ -43,7 +43,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
     }
 
     public void add(Event event){
-        mEvents.add(event);
+        if(!mEvents.contains(event))
+            mEvents.add(event);
+        notifyDataSetChanged();
+    }
+    public void remove(Event event){
+        if(mEvents.contains(event))
+            mEvents.remove(event);
         notifyDataSetChanged();
     }
 }

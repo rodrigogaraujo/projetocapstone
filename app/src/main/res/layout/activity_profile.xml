@@ -30,6 +30,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="centerCrop"
+                    android:contentDescription="@string/image_profile"
                     android:src="@mipmap/ic_launcher_round"
                     app:civ_border_color="@color/colorWhite"
                     app:civ_border_width="2dp"
@@ -161,45 +162,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/linear_options"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <ImageButton
-                            android:id="@+id/bt_block"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_block_white" />
-
-                        <ImageButton
-                            android:id="@+id/bt_silence"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_mic_off" />
-
-                        <ImageButton
-                            android:id="@+id/bt_favorite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_favorite" />
-
-                    </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </RelativeLayout>

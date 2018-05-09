@@ -3,6 +3,7 @@ package party.com.br.party.holer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +26,7 @@ import party.com.br.party.R;
 import party.com.br.party.entity.Event;
 import party.com.br.party.helper.Constants;
 import party.com.br.party.helper.RoundedTransformation;
+import party.com.br.party.widget.AppWidget;
 
 /**
  * Created by g3infotech on 22/03/18.
@@ -79,12 +82,22 @@ public class EventViewHolder extends RecyclerView.ViewHolder implements View.OnC
         int id = v.getId();
         switch (id){
             case R.id.iv_banner:
-                Intent i = new Intent(mContext, DetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(Constants.SEND_EVENT, mEvent);
-                i.putExtras(bundle);
-                mContext.startActivity(i);
+                setAction();
                 break;
         }
+    }
+
+    private void setAction() {
+        Intent i = new Intent(mContext, DetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constants.SEND_EVENT, mEvent);
+        i.putExtras(bundle);
+        mContext.startActivity(i);
+
+        Intent intentWidget = new Intent(mContext, AppWidget.class);
+        intentWidget.setAction(Constants.EVENT_ACTION.SEND_EVENT_WIDGET);
+        bundle.putParcelable(Constants.SEND_EVENT,  mEvent);
+        intentWidget.putExtras(bundle);
+        mContext.sendBroadcast(intentWidget);
     }
 }

@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import party.com.br.party.dao.UserDao;
 import party.com.br.party.entity.User;
+import party.com.br.party.helper.Constants;
 import party.com.br.party.helper.PartyPreferences;
 import party.com.br.party.listener.GetByTypeListener;
 
@@ -37,12 +38,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     TextView mTvEmail;
     @BindView(R.id.tv_adress)
     TextView mTvAdress;
-    @BindView(R.id.bt_block)
-    ImageButton mBtBlock;
-    @BindView(R.id.bt_silence)
-    ImageButton mBtSilence;
-    @BindView(R.id.bt_favorite)
-    ImageButton mBtFavorite;
     CircleImageView mCircleImage;
     private PartyPreferences mPartyPreferences;
 
@@ -56,7 +51,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         mBtEdit.setOnClickListener(this);
         mPbProfile.setVisibility(View.VISIBLE);
-        new UserDao().getById(mPartyPreferences.getIdUser(), this);
+        if(getIntent().hasExtra(Constants.SEND_PERSON) && getIntent().getExtras() != null){
+            new UserDao().getById(getIntent().getStringExtra(Constants.SEND_PERSON), this);
+        }else {
+            new UserDao().getById(mPartyPreferences.getIdUser(), this);
+        }
     }
 
     @Override

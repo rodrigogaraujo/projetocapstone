@@ -6,8 +6,12 @@ package party.com.br.party.helper;
 
 public class Constants {
     public static final String SEND_EVENT = "br.com.party.send_event";
+    public static final String SEND_EVENTS = "br.com.party.send_events";
+    public static final String SEND_EVENT_NOTIFICATION = "br.com.party.send_event_notification";
+    public static final String SEND_EVENT_NOTIFICATION_OK = "notification_ok";
     public static final String SEND_EVENT_DAY = "br.com.party.send_event_day";
     public static final String SEND_EVENT_LOCALE = "br.com.party.send_event_locale";
+    public static final String SEND_PERSON = "br.com.party.send_person";
 
     public static final class FIREBASE_REALTIME {
         public static final String CHILD_USER = "user";
@@ -81,7 +85,7 @@ public class Constants {
     public static final class EVENT_ACTION {
         public static final int ADD_DAY = 12;
         public static final int ADD_LOCALE = 13;
-        public static final int GET_DAY = 13;
+        public static final String SEND_EVENT_WIDGET = "event_widget";
     }
 
     public static final class STATES {

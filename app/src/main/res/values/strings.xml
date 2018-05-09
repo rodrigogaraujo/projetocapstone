@@ -122,4 +122,9 @@
     <string name="upload_picture_text">Seu upload está sendo realizado, aguarde.</string>
     <string name="event_create_title">EVENTO CRIADO</string>
     <string name="event_create">Evento criado com sucesso!</string>
+    <string name="help_us">Avise a seus amigos sobre nós</string>
+    <string name="help_us_title">LEMBRETE</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="last_event">ULTIMOS EVENTOS VISUALIZADOS</string>
 </resources>

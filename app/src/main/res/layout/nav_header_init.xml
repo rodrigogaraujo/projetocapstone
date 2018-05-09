@@ -17,6 +17,7 @@
         android:id="@+id/iv_profile"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:contentDescription="@string/image_profile"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher_round"
@@ -44,6 +45,6 @@
         android:id="@+id/progress_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
 </LinearLayout>

@@ -12,12 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +42,7 @@ import party.com.br.party.helper.Constants;
 import party.com.br.party.helper.PartyPreferences;
 import party.com.br.party.helper.Utilities;
 import party.com.br.party.listener.GetByTypeListener;
+import party.com.br.party.service.EventJobService;
 
 public class InitActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GetByTypeListener<User> {
@@ -51,12 +56,12 @@ public class InitActivity extends AppCompatActivity
     private RecyclerView mRvEvents;
     private LinearLayoutManager mLayoutManager;
     private Toolbar mToolbar;
-    private BottomNavigationView mBottomView;
     private NavigationView mNavigationView;
     private PartyPreferences mPartyPreferences;
     private DrawerLayout mDrawer;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
+    private FirebaseJobDispatcher mDispatcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,21 +86,35 @@ public class InitActivity extends AppCompatActivity
         mNavigationView.setNavigationItemSelectedListener(this);
 
         mRvEvents = findViewById(R.id.rv_list_event);
-        mBottomView = findViewById(R.id.bn_navigation_bottom);
 
         ButterKnife.bind(this);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mBottomView.setSelectedItemId(R.id.action_home);
-
         mRvEvents.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRvEvents.setLayoutManager(mLayoutManager);
-
         mEvents = new ArrayList<>();
+        mEventAdapter = new EventAdapter(InitActivity.this, mEvents);
+        mRvEvents.setAdapter(mEventAdapter);
+
         mProgressEvent.setVisibility(View.VISIBLE);
 
+        verifyData();
+        new UserDao().getById(mPartyPreferences.getIdUser(), this);
+        if(mDispatcher == null)
+            mDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
+
+        if(!getIntent().hasExtra(Constants.SEND_EVENT_NOTIFICATION)) {
+            Job myJob = mDispatcher.newJobBuilder()
+                    .setService(EventJobService.class)
+                    .setTag("my-unique-tag")
+                    .build();
+            mDispatcher.mustSchedule(myJob);
+        }
+    }
+
+    private void verifyData() {
         mDatabaseReference.child(Constants.FIREBASE_REALTIME.CHILD_EVENT).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -103,11 +122,15 @@ public class InitActivity extends AppCompatActivity
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         Event event = data.getValue(Event.class);
-                        mEvents.add(event);
+                        new UserDao().getById(mPartyPreferences.getIdUser(), user -> {
+                            if(user.getInterest().contains(event.getType())){
+                                mEventAdapter.add(event);
+                            }else{
+                                mEventAdapter.remove(event);
+                            }
+                        });
                     }
                 }
-                mEventAdapter = new EventAdapter(InitActivity.this, mEvents);
-                mRvEvents.setAdapter(mEventAdapter);
             }
 
             @Override
@@ -115,7 +138,12 @@ public class InitActivity extends AppCompatActivity
 
             }
         });
-        new UserDao().getById(mPartyPreferences.getIdUser(), this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDispatcher.cancel("my-unique-tag");
     }
 
     @Override
@@ -157,6 +185,7 @@ public class InitActivity extends AppCompatActivity
             startActivity(new Intent(this, EmailLoginActivity.class));
         } else if (id == R.id.nav_filter) {
             startActivity(new Intent(this, PreferencesActivity.class));
+            finish();
         }else if (id == R.id.nav_my_events) {
             startActivity(new Intent(this, MyEventsActivity.class));
         }

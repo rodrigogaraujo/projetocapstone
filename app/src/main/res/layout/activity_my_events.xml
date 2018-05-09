@@ -15,13 +15,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="@dimen/elevation_appbar">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_detail"
+                    style="@style/toolbar_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:titleTextColor="@color/colorWhite" />
+            </android.support.design.widget.AppBarLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_list_event"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="64dp"
                 android:paddingTop="@dimen/eight_dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

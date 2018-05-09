@@ -2,6 +2,7 @@ package party.com.br.party;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,7 +50,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.iv_banner)
     ImageView mIvBanner;
     @BindView(R.id.ib_edit)
-    ImageButton mIbEdit;
+    FloatingActionButton mIbEdit;
     @BindView(R.id.bt_go)
     ImageButton mBtGo;
     @BindView(R.id.bt_who)
@@ -61,7 +62,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private DetailAdapter mDetailAdapter;
     private LocaleTicketAdapter mLocaleTicketAdapter;
     private PartyPreferences mPartyPreferences;
-    private CardView mCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         mToolbar = findViewById(R.id.toolbar_detail);
         mRecyclerView = findViewById(R.id.rv_days_event);
         mRecyclerViewLocale = findViewById(R.id.rv_points);
-        mCard = findViewById(R.id.card_edit);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -114,7 +113,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 mRecyclerViewLocale.setAdapter(mLocaleTicketAdapter);
                 if (mEvent.getIdAdmin().equals(mPartyPreferences.getIdUser())) {
                     mIbEdit.setVisibility(View.VISIBLE);
-                    mCard.setVisibility(View.VISIBLE);
                     mBtGo.setEnabled(false);
                 }
                 if(mEvent.getIdPersonGo() != null)
@@ -174,6 +172,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void btWhoGo() {
+        Intent intent = new Intent(this, WhoGoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList(Constants.SEND_EVENT, (ArrayList<String>) mEvent.getIdPersonGo());
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private void sendEvent() {
