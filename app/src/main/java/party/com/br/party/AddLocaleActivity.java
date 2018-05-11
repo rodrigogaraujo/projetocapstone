@@ -1,6 +1,7 @@
 package party.com.br.party;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ public class AddLocaleActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.tv_email)
     EditText mEtEmail;
     MaskEditText mEtPhone;
+    private LocaleTicket mLocaleTicket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class AddLocaleActivity extends AppCompatActivity implements View.OnClick
         ButterKnife.bind(this);
         mEtPhone = findViewById(R.id.tv_phone);
         mBtConfirm.setOnClickListener(this);
+        if(savedInstanceState != null)
+            setmLocaleTicket(savedInstanceState.getParcelable(Constants.SEND_EVENT_LOCALE));
     }
 
     @Override
@@ -44,6 +48,23 @@ public class AddLocaleActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null)
+            setmLocaleTicket(savedInstanceState.getParcelable(Constants.SEND_EVENT_LOCALE));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.clear();
+        if(mLocaleTicket == null){
+            mLocaleTicket = getLocaleTicket();
+            outState.putParcelable(Constants.SEND_EVENT_LOCALE, mLocaleTicket);
+        }
+    }
+
     private void buttonConfirm() {
         mBtConfirm.startAnimation(Utilities.animationAlpha());
         if(mEtAdress.getText().toString().equals("")){
@@ -52,10 +73,7 @@ public class AddLocaleActivity extends AppCompatActivity implements View.OnClick
             if(mEtEmail.getText().toString().equals("") && mEtPhone.getText().toString().equals("")){
                 mEtAdress.setError(getString(R.string.field_));
             }else{
-                LocaleTicket localeTicket = new LocaleTicket();
-                localeTicket.setAdress(mEtAdress.getText().toString());
-                localeTicket.setEmail(mEtEmail.getText().toString());
-                localeTicket.setPhone(mEtPhone.getText().toString());
+                LocaleTicket localeTicket = getLocaleTicket();
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(Constants.SEND_EVENT_LOCALE, localeTicket);
@@ -65,5 +83,20 @@ public class AddLocaleActivity extends AppCompatActivity implements View.OnClick
             }
         }
 
+    }
+
+    public void setmLocaleTicket(LocaleTicket localeTicket) {
+        mEtAdress.setText(localeTicket.getAdress());
+        mEtEmail.setText(localeTicket.getEmail());
+        mEtPhone.setText(localeTicket.getPhone());
+    }
+
+    @NonNull
+    private LocaleTicket getLocaleTicket() {
+        LocaleTicket localeTicket = new LocaleTicket();
+        localeTicket.setAdress(mEtAdress.getText().toString());
+        localeTicket.setEmail(mEtEmail.getText().toString());
+        localeTicket.setPhone(mEtPhone.getText().toString());
+        return localeTicket;
     }
 }

@@ -4,7 +4,7 @@ android {
         config {
             keyAlias 'key0'
             keyPassword '123456'
-            storeFile file('C:/Users/Isabelly/Documents/RODRIGO-PROJETOS/capstonejks.jks')
+            storeFile file('$rootDir/capstonejks.jks')
             storePassword '123456'
         }
     }

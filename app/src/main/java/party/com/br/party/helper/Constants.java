@@ -13,6 +13,8 @@ public class Constants {
     public static final String SEND_EVENT_LOCALE = "br.com.party.send_event_locale";
     public static final String SEND_PERSON = "br.com.party.send_person";
     public static final String LIST_STATE_KEY = "br.com.party.list_state";
+    public static final String TAG_DISPATCHER = "br.com.party.tag";
+    public static final String SEND_DAY = "br.com.party.send_day";
 
     public static final class FIREBASE_REALTIME {
         public static final String CHILD_USER = "user";

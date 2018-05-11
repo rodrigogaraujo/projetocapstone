@@ -108,7 +108,7 @@ public class InitActivity extends AppCompatActivity
             if(!getIntent().hasExtra(Constants.SEND_EVENT_NOTIFICATION)) {
                 Job myJob = mDispatcher.newJobBuilder()
                         .setService(EventJobService.class)
-                        .setTag("my-unique-tag")
+                        .setTag(Constants.TAG_DISPATCHER)
                         .build();
                 mDispatcher.mustSchedule(myJob);
             }
@@ -159,7 +159,7 @@ public class InitActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mDispatcher.cancel("my-unique-tag");
+        mDispatcher.cancel(Constants.TAG_DISPATCHER);
     }
 
     @Override

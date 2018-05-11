@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -43,6 +45,7 @@ public class AddDayActivity extends AppCompatActivity implements View.OnClickLis
     ProgressBar mProgressBar;
     private String mPicture;
     private StorageReference mStorageReference;
+    private Day mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,24 @@ public class AddDayActivity extends AppCompatActivity implements View.OnClickLis
 
         mBtConfirm.setOnClickListener(this);
         mIvBanner.setOnClickListener(this);
+        if(savedInstanceState != null)
+            setDay(savedInstanceState.getParcelable(Constants.SEND_DAY));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(mDay == null)
+            mDay = getDay();
+        outState.clear();
+        outState.putParcelable(Constants.SEND_DAY, mDay);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null)
+            setDay(savedInstanceState.getParcelable(Constants.SEND_DAY));
     }
 
     @Override
@@ -121,13 +142,7 @@ public class AddDayActivity extends AppCompatActivity implements View.OnClickLis
             if (mTvValueBasic.getText().toString().equals(""))
                 mTvValueBasic.setError(getString(R.string.field_));
             else {
-                Day day = new Day();
-                day.setPicture(mPicture);
-                day.setValueBasic(mTvValueBasic.getText().toString());
-                day.setValueVip(mTvValueVip.getText().toString());
-                day.setValueTop(mTvValueTop.getText().toString());
-                day.setSinger(mEtDescription.getText().toString());
-                day.setDay(Integer.parseInt(mEtLote.getText().toString()));
+                Day day = getDay();
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(Constants.SEND_EVENT_DAY, day);
@@ -136,5 +151,28 @@ public class AddDayActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
             }
         }
+    }
+
+    @NonNull
+    private void setDay(Day day) {
+        mPicture = day.getPicture();
+        mTvValueBasic.setText(String.valueOf(day.getValueBasic()));
+        mTvValueVip.setText(String.valueOf(day.getValueVip()));
+        mTvValueTop.setText(String.valueOf(day.getValueTop()));
+        mTvValueBasic.setText(String.valueOf(day.getValueBasic()));
+        mEtDescription.setText(String.valueOf(day.getDescription()));
+        mEtLote.setText(String.valueOf(day.getDay()));
+    }
+
+    @NonNull
+    private Day getDay() {
+        Day day = new Day();
+        day.setPicture(mPicture);
+        day.setValueBasic(mTvValueBasic.getText().toString());
+        day.setValueVip(mTvValueVip.getText().toString());
+        day.setValueTop(mTvValueTop.getText().toString());
+        day.setSinger(mEtDescription.getText().toString());
+        day.setDay(Integer.parseInt(mEtLote.getText().toString()));
+        return day;
     }
 }

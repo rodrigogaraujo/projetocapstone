@@ -2,6 +2,8 @@ package party.com.br.party;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -48,6 +50,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth mFirebaseAuth;
     private Bundle mBundle;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,9 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         }
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        if(savedInstanceState != null)
+            setUser(savedInstanceState.getParcelable(Constants.SEND_PERSON));
     }
 
     @Override
@@ -91,18 +97,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         }else{
             mProgress.setVisibility(View.VISIBLE);
             editEnable(false);
-            User user = new User();
-            user.setName(mEtName.getText().toString());
-            user.setEmail(mEtEmail.getText().toString());
-            user.setPhone(mEtPhone.getText().toString());
-            user.setAdress(mEtAdress.getText().toString());
-            user.setPicture("");
-            user.setType(mBundle.getString(Constants.INTRO.SEND_TYPE));
-            List<String> interests = new ArrayList<>();
-            interests.add(Constants.TYPE_INTEREST.ELETRONICA);
-            user.setInterest(interests);
-            user.setStatus(true);
-            user.setText(Constants.TEXTS_STATUS.OLA);
+            User user = getUser();
             mFirebaseAuth.createUserWithEmailAndPassword(user.getEmail(), mEtPass.getText().toString()).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     mProgress.setVisibility(View.GONE);
@@ -148,6 +143,54 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                 }
             });
         }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null)
+            setUser(savedInstanceState.getParcelable(Constants.SEND_PERSON));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(mUser == null)
+            mUser = getUser();
+        outState.clear();
+        outState.putParcelable(Constants.SEND_PERSON, mUser);
+    }
+
+    private void setUser(User user){
+        mEtName.setText(user.getName());
+        mEtEmail.setText(user.getEmail());
+        mEtPhone.setText(user.getPhone());
+        mEtAdress.setText(user.getAdress());
+        user.setPicture("");
+        user.setType(mBundle.getString(Constants.INTRO.SEND_TYPE));
+        List<String> interests = new ArrayList<>();
+        interests.add(Constants.TYPE_INTEREST.ELETRONICA);
+        user.setInterest(interests);
+        user.setStatus(true);
+        user.setText(Constants.TEXTS_STATUS.OLA);
+    }
+
+
+    @NonNull
+    private User getUser() {
+        User user = new User();
+        user.setName(mEtName.getText().toString());
+        user.setEmail(mEtEmail.getText().toString());
+        user.setPhone(mEtPhone.getText().toString());
+        user.setAdress(mEtAdress.getText().toString());
+        user.setPicture("");
+        user.setType(mBundle.getString(Constants.INTRO.SEND_TYPE));
+        List<String> interests = new ArrayList<>();
+        interests.add(Constants.TYPE_INTEREST.ELETRONICA);
+        user.setInterest(interests);
+        user.setStatus(true);
+        user.setText(Constants.TEXTS_STATUS.OLA);
+        return user;
     }
 
     private void editEnable(boolean b) {

@@ -2,8 +2,10 @@ package party.com.br.party;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -93,6 +95,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
     private String mIdEvent;
     private SimpleDateFormat mDateFormat;
     private PartyPreferences mPartyPreferences;
+    private Event mEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +146,9 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         mIvBanner.setOnClickListener(this);
 
         mDateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("BR"));
+
+        if(savedInstanceState != null)
+            setEvent(savedInstanceState.getParcelable(Constants.SEND_EVENT));
     }
 
     @Override
@@ -224,28 +230,13 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
 
     private void confirmButton() {
         mBtConfirm.startAnimation(Utilities.animationAlpha());
-        Event event = new Event();
         try {
             if(mEtDate.getText().toString().equals("") || mEtDescription.getText().toString().equals("") || mEtTime.getText().toString().equals("")
                     || mEtAdress.getText().toString().equals("") || mEtCity.getText().toString().equals("") || mEtEmail.getText().toString().equals("")
                     || mEtPhone.getText().toString().equals("")){
                 Utilities.confirmDialog(this, getString(R.string.error_empty), getString(R.string.error_create_event));
             }else {
-                event.setIdAdmin(mPartyPreferences.getIdUser());
-                event.setDate(mDateFormat.parse(mEtDate.getText().toString()));
-                event.setName(mEtDescription.getText().toString());
-                event.setAdress(mEtAdress.getText().toString());
-                event.setContact(mEtPhone.getText().toString());
-                event.setEmail(mEtEmail.getText().toString());
-                event.setHours(Integer.parseInt(mEtTime.getText().toString()));
-                event.setDescription(mEtMoreDetails.getText().toString());
-                event.setPicture(mPicture);
-                event.setLocation(mEtCity.getText().toString().concat(getString(R.string.virg)).concat(mSpnState.getSelectedItem().toString()));
-                event.setType(mSpnType.getSelectedItem().toString());
-                event.setDays(mDays);
-                event.setLocaleTickets(mLocales);
-                mIdsGo.add(mPartyPreferences.getIdUser());
-                event.setIdPersonGo(mIdsGo);
+                Event event = getEvent();
                 if (mDays.size() == 0) {
                     Utilities.confirmDialog(this, getString(R.string.error_empty), getString(R.string.error_day_empty));
                 } else if (mLocales.size() == 0) {
@@ -265,6 +256,75 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         } catch (ParseException e) {
             Utilities.confirmDialog(this, getString(R.string.error_date), getString(R.string.format_correct));
         }
+    }
+
+    private void setEvent(Event event){
+        if(event.getDate() != null)
+            mEtDate.setText(mDateFormat.format(event.getDate()));
+        mEtDescription.setText(event.getName());
+        mEtAdress.setText(event.getAdress());
+        mEtPhone.setText(event.getContact());
+        mEtEmail.setText(event.getEmail());
+        mEtMoreDetails.setText(event.getDescription());
+        mEtTime.setText(String.valueOf(event.getHours()));
+        mPicture = event.getPicture();
+        if (mPicture.equals(""))
+            mIvBanner.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_logo));
+        else
+            Picasso.get().load(mPicture).into(mIvBanner);
+        String line = event.getLocation();
+        String values[] = line.split(",");
+        mEtCity.setText(values[0]);
+        mSpnState.setSelection(Lists.getStates().indexOf(values[1]));
+        mSpnType.setSelection(Lists.getTypes().indexOf(event.getType()));
+        mDays.clear();
+        mDays.addAll(event.getDays());
+        mLocales.clear();
+        mLocales.addAll(event.getLocaleTickets());
+        mIdsGo.clear();
+        mIdsGo.addAll(event.getIdPersonGo());
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(mEvent == null) {
+            try {
+                mEvent = getEvent();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        outState.clear();
+        outState.putParcelable(Constants.SEND_EVENT, mEvent);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null)
+            setEvent(savedInstanceState.getParcelable(Constants.SEND_EVENT));
+    }
+
+    @NonNull
+    private Event getEvent() throws ParseException {
+        Event event = new Event();
+        event.setIdAdmin(mPartyPreferences.getIdUser());
+        event.setDate(mDateFormat.parse(mEtDate.getText().toString()));
+        event.setName(mEtDescription.getText().toString());
+        event.setAdress(mEtAdress.getText().toString());
+        event.setContact(mEtPhone.getText().toString());
+        event.setEmail(mEtEmail.getText().toString());
+        event.setHours(Integer.parseInt(mEtTime.getText().toString()));
+        event.setDescription(mEtMoreDetails.getText().toString());
+        event.setPicture(mPicture);
+        event.setLocation(mEtCity.getText().toString().concat(getString(R.string.virg)).concat(mSpnState.getSelectedItem().toString()));
+        event.setType(mSpnType.getSelectedItem().toString());
+        event.setDays(mDays);
+        event.setLocaleTickets(mLocales);
+        mIdsGo.add(mPartyPreferences.getIdUser());
+        event.setIdPersonGo(mIdsGo);
+        return event;
     }
 
     private void addDay() {
