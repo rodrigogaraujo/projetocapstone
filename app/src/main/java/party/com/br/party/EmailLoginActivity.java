@@ -29,6 +29,7 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
     ProgressBar mProgressEmail;
     private PartyPreferences mPartyPreferences;
     private FirebaseAuth mFirebaseAuth;
+    private String mEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,9 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
         mPartyPreferences = new PartyPreferences(this);
         mBtConfirm.setOnClickListener(this);
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mEmail = "";
+        if(savedInstanceState != null)
+            mEmail = savedInstanceState.getString(Constants.SEND_PERSON);
     }
 
     @Override
@@ -48,6 +52,21 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
                 loginValidate();
                 break;
         }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null)
+            mEmail = savedInstanceState.getString(Constants.SEND_PERSON);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(mEmail.equals(""))
+            mEmail = mEtEmail.getText().toString();
+        outState.putString(Constants.SEND_PERSON, mEmail);
     }
 
     private void loginValidate() {
