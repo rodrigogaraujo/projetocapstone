@@ -3,7 +3,6 @@ package party.com.br.party;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -52,19 +51,24 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void loginValidate() {
-        if(Utilities.isConnected(this)) {
-            mProgressEmail.setVisibility(View.VISIBLE);
-            mBtConfirm.startAnimation(Utilities.animationAlpha());
-            mEtPass.setEnabled(false);
-            mEtEmail.setEnabled(false);
-            mFirebaseAuth.fetchSignInMethodsForEmail(mEtEmail.getText().toString()).addOnCompleteListener(task -> {
-                if (task.getResult().getSignInMethods().size() > 0) {
-                    signUserIn();
-                } else {
-                    signUserUp(mEtEmail.getText().toString());
-                }
-            });
-        }else{
+        if (Utilities.isConnected(this)) {
+            if (mEtEmail.getText().toString().equals("") || mEtPass.getText().toString().equals("")) {
+                mEtPass.setError(getString(R.string.error_empty));
+                mEtEmail.setError(getString(R.string.error_empty));
+            } else {
+                mProgressEmail.setVisibility(View.VISIBLE);
+                mBtConfirm.startAnimation(Utilities.animationAlpha());
+                mEtPass.setEnabled(false);
+                mEtEmail.setEnabled(false);
+                mFirebaseAuth.fetchSignInMethodsForEmail(mEtEmail.getText().toString()).addOnCompleteListener(task -> {
+                    if (task.getResult().getSignInMethods().size() > 0) {
+                        signUserIn();
+                    } else {
+                        signUserUp(mEtEmail.getText().toString());
+                    }
+                });
+            }
+        } else {
             Utilities.confirmDialog(this, getString(R.string.error_conected), getString(R.string.error_conected_message));
         }
     }
@@ -82,7 +86,7 @@ public class EmailLoginActivity extends AppCompatActivity implements View.OnClic
             if (task.isSuccessful()) {
                 mProgressEmail.setVisibility(View.GONE);
                 mPartyPreferences.clear();
-                mPartyPreferences.saveUserPreferences(task.getResult().getUser().getUid(),task.getResult().getUser().getEmail());
+                mPartyPreferences.saveUserPreferences(task.getResult().getUser().getUid(), task.getResult().getUser().getEmail());
                 startActivity(new Intent(this, InitActivity.class));
                 this.finish();
             }
