@@ -388,7 +388,8 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         mEtTime.setText(String.valueOf(event.getHours()));
         mEtMoreDetails.setText(event.getDescription());
         mPicture = event.getPicture();
-        Picasso.get().load(mPicture).into(mIvBanner);
+        if(!mPicture.equals(""))
+            Picasso.get().load(mPicture).into(mIvBanner);
         String line = event.getLocation();
         String values[] = line.split(",");
         mEtCity.setText(values[0]);

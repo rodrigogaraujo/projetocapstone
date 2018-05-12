@@ -75,6 +75,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/date"
                             android:src="@drawable/ic_date_24dp" />
 
                         <TextView
@@ -106,6 +107,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/adress"
                             android:src="@drawable/ic_pin_dropc_24dp" />
 
                         <TextView
@@ -137,6 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
+                            android:contentDescription="@string/phone"
                             android:src="@drawable/ic_phone_24dp" />
 
                         <LinearLayout
@@ -229,13 +232,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:background="@android:color/transparent"
+                                android:contentDescription="@string/i_go"
                                 android:src="@drawable/ic_check_no" />
+
                             <TextView
+                                style="@style/font_text_i_go"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/i_go"
-                                android:textAlignment="center"
-                                style="@style/font_text_i_go"/>
+                                android:textAlignment="center" />
                         </LinearLayout>
 
                         <Button
@@ -245,6 +250,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
+                            android:contentDescription="@string/who_go"
                             android:drawableTop="@drawable/ic_go"
                             android:text="@string/who_go" />
 

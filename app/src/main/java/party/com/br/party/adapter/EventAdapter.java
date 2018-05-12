@@ -52,4 +52,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
             mEvents.remove(event);
         notifyDataSetChanged();
     }
+
+    public void clean() {
+        mEvents.clear();
+        notifyDataSetChanged();
+    }
 }

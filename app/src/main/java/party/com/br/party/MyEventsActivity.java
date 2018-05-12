@@ -72,6 +72,7 @@ public class MyEventsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mProgressEvent.setVisibility(View.GONE);
+                mEventAdapter.clean();
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         Event event = data.getValue(Event.class);

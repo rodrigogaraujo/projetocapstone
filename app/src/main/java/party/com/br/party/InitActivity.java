@@ -123,6 +123,7 @@ public class InitActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mProgressEvent.setVisibility(View.GONE);
                 if (dataSnapshot.exists()) {
+                    mEventAdapter.clean();
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         Event event = data.getValue(Event.class);
                         new UserDao().getById(mPartyPreferences.getIdUser(), user -> {
